@@ -1,0 +1,442 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <!-- OLD STUFF FOR TESTING ONLY
+                      <tr>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Nedrivning" name="BaseQAinput"
+                  id="BaseQAinput9" data-name="Nedrivning"><label class="form-check-label" for="defaultCheck1">Nedrivning</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="IC" name="BaseQAinput"
+                  id="test20" data-name="IC"><label class="form-check-label" for="defaultCheck1">IC</label></div>
+            </td>
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+      <h1>Agreements with customer</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">SSG standard</th>
+            <th scope="col">Standard</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Servicetype: SSG or standard</th>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+              <td>
+                <div class="btn-group mr-2" role="group" aria-label="First group"><input class="form-check-input"
+                    type="radio" name="button9" id="button17" value="SSG"></div>
+              </td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Third group"><input class="form-check-input"
+                    type="radio" name="button9" id="button18" value="Standard" checked></div>
+              </td>
+            </div>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Yes</th>
+            <th scope="col">No</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">External material supplier?</th>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+              <td>
+                <div class="btn-group mr-2" role="group" aria-label="First group"><input class="form-check-input"
+                    type="radio" name="button1" id="button1" value="option1"></div>
+              </td>
+ <div data-v-0ce1aa6c="" class="approve__product">
+   <div class="basket__product-link">     
+    <h2 data-v-0ce1aa6c="" class="approve__product-title">Din forsikring</h2> <span data-v-479aeccb="" data-v-0ce1aa6c="" class="fractioned-price approve__product-price" split-character="." style="display: none;">
+        <span data-v-479aeccb="">513</span>
+        <span data-v-479aeccb="" class="fractioned-price__super">59</span>
+        <span data-v-479aeccb="" class="fractioned-price__postfix">kr/år</span></span>
+        <span data-v-479aeccb="" data-v-0ce1aa6c="" class="fractioned-price approve__product-price" split-character=".">
+        <span data-v-479aeccb="">42</span>
+        <span data-v-479aeccb="" class="fractioned-price__super">80</span>
+        <span data-v-479aeccb="" class="fractioned-price__postfix">kr/md</span></span>
+           </div>     
+   <div>     
+<div style="display: none">        
+    <div data-v-0ce1aa6c="" class="approve__product__text">asd</div>
+    <p data-v-0ce1aa6c="" class="approve__product__text">Forsikringen </p>
+    <ul data-v-0ce1aa6c="" class="approve__list">
+        <li data-v-0ce1aa6c="" class="approve__list-item">0 kr. i selvrisiko</li>
+        <li data-v-0ce1aa6c="" class="approve__list-item"></li>
+    </ul>
+</div>
+                <div class="btn-group mr-2" role="group" aria-label="First group"><input class="form-check-input"
+                    type="radio" name="button4" id="button7" value="option7"></div>
+              </td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Third group"><input class="form-check-input"
+                    type="radio" name="button4" id="button8" value="buildingcontrol" checked></div>
+              </td>
+            </div>       <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="test" name="BaseQAinput"
+                  id="test2" data-name="test"><label class="form-check-label" for="defaultCheck1">test</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Skade" name="BaseQAinput"
+                  id="test3" data-name="skade"><label class="form-check-label" for="defaultCheck1">Skade</label></div>
+            </td>
+          </tr>
+          -->
+<style>
+  .col {
+    max-width: 30%;
+  }
+</style>
+        <!--
+                        <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="test" name="BaseQAinput"
+                  id="test2" data-name="test"><label class="form-check-label" for="defaultCheck1">test</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Skade" name="BaseQAinput"
+                  id="test3" data-name="skade"><label class="form-check-label" for="defaultCheck1">Skade</label></div>
+            </td>
+          </tr>
+          -->
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist" style="padding-left:35vw"><a class="nav-item nav-link active"
+      id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
+      aria-selected="true">Project Overview</a><a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+      href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contract</a></div>
+</nav>
+<form action="/customisation/" method="POST" style="padding:2rem 5rem">{% csrf_token %}<div class="tab-content"
+    id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <h1>Overview</h1>
+      <div class="row">
+        <div class="col"><input type="text" class="form-control" name="name" value="Project name"></div>
+        <div class="col"><input class="form-control" id="date" name="date" placeholder="Start if Commisioning"
+            type="text"></div>
+      </div>
+      <h1 style="padding-top:2rem">Select relevent fileds for the project</h1>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Region Hovedstaden" name="BaseQAinput"
+                  id="test" data-name="Region Hovedstaden"><label class="form-check-label" for="defaultCheck1">Region Hovedstaden</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Fyn" name="BaseQAinput"
+                  id="test2" data-name="Fyn"><label class="form-check-label" for="defaultCheck1">Fyn</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Skadeservice" name="BaseQAinput"
+                  id="test3" data-name="Skadeservice"><label class="form-check-label" for="defaultCheck1">Skadeservice</label></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Region Nordjylland" name="BaseQAinput"
+                  id="test4" data-name="Region Nordjylland"><label class="form-check-label" for="defaultCheck1">Region Nordjylland</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="NetworkCraftman" name="BaseQAinput"
+                  id="test5" data-name="NetworkCraftman"><label class="form-check-label" for="defaultCheck1">Network Craftman</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="SpecialSupport" name="BaseQAinput"
+                  id="test6" data-name="SpecialSupport"><label class="form-check-label" for="defaultCheck1">Special Support</label></div>
+            </td>
+          </tr>
+          <!--
+                        <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="test" name="BaseQAinput"
+                  id="test2" data-name="test"><label class="form-check-label" for="defaultCheck1">test</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Skade" name="BaseQAinput"
+                  id="test3" data-name="skade"><label class="form-check-label" for="defaultCheck1">Skade</label></div>
+            </td>
+          </tr>
+          -->
+          <tr>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Industri" name="BaseQAinput"
+                  id="test7" data-name="Industri"><label class="form-check-label" for="defaultCheck1">Industri</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Privat" name="BaseQAinput"
+                  id="test8" data-name="Privat"><label class="form-check-label" for="defaultCheck1">Privat</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Bygningsservice" name="BaseQAinput"
+                  id="test9" data-name="Bygningsservice"><label class="form-check-label" for="defaultCheck1">Bygnings service</label></div>
+            </td>
+          </tr>
+          <!--
+
+
+          -->
+          <tr>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Kloak" name="BaseQAinput"
+                  id="BaseQAinput0" data-name="Kloak"><label class="form-check-label" for="defaultCheck1">Kloak</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="FE" name="BaseQAinput"
+                  id="BaseQAinput1" data-name="FE"><label class="form-check-label" for="defaultCheck1">FE</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Renovering" name="BaseQAinput"
+                  id="BaseQAinput2" data-name="Renovering"><label class="form-check-label" for="defaultCheck1">Renovering</label></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="VVSService" name="BaseQAinput"
+                  id="BaseQAinput3" data-name="VVSService"><label class="form-check-label" for="defaultCheck1">VVS Service</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Brand" name="BaseQAinput"
+                  id="BaseQAinput4" data-name="Brand"><label class="form-check-label" for="defaultCheck1">Brand</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Indbrud" name="BaseQAinput"
+                  id="BaseQAinput5" data-name="Indbrud"><label class="form-check-label" for="defaultCheck1">Indbrud</label></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="HR" name="BaseQAinput"
+                  id="BaseQAinput6" data-name="HR"><label class="form-check-label" for="defaultCheck1">HR</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Eletrikernetwork" name="BaseQAinput"
+                  id="BaseQAinput7" data-name="Eletrikernetwork"><label class="form-check-label" for="defaultCheck1">Eletriker netværk</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="TB" name="BaseQAinput"
+                  id="BaseQAinput8" data-name="TB"><label class="form-check-label" for="defaultCheck1">TB</label></div>
+            </td>
+          </tr>
+          <!--
+             <p class="center">Space Invadors destroyed this page! Take revenge on them!
+     <br /> Use <span class="label label-danger">Space</span> to shoot and <span
+         class="label label-danger">←</span>&#160;<span class="label label-danger">→</span> to
+     move!&#160;&#160;&#160;<button class="btn btn-default btn-xs" id="restart">Restart</button>
+ </p>
+
+ <canvas id="space-invaders" />
+          -->
+          <tr>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="Nedrivning" name="BaseQAinput"
+                  id="BaseQAinput9" data-name="Nedrivning"><label class="form-check-label" for="defaultCheck1">Nedrivning</label></div>
+            </td>
+            <td>
+              <div class="form-check"><input class="form-check-input" type="checkbox" value="IC" name="BaseQAinput"
+                  id="test20" data-name="IC"><label class="form-check-label" for="defaultCheck1">IC</label></div>
+            </td>
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+      <h1>Agreements with customer</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">SSG standard</th>
+            <th scope="col">Standard</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Servicetype: SSG or standard</th>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+              <td>
+                <div class="btn-group mr-2" role="group" aria-label="First group"><input class="form-check-input"
+                    type="radio" name="button9" id="button17" value="SSG"></div>
+              </td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Third group"><input class="form-check-input"
+                    type="radio" name="button9" id="button18" value="Standard" checked></div>
+              </td>
+            </div>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Yes</th>
+            <th scope="col">No</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">External material supplier?</th>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+              <td>
+                <div class="btn-group mr-2" role="group" aria-label="First group"><input class="form-check-input"
+                    type="radio" name="button1" id="button1" value="option1"></div>
+              </td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Third group"><input class="form-check-input"
+                    type="radio" name="button1" id="button2" value="External" checked></div>
+              </td>
+            </div>
+          </tr>
+          <tr>
+            <th scope="row">Onsite with customer wanted?</th>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+              <td>
+                <div class="btn-group mr-2" role="group" aria-label="First group"><input class="form-check-input"
+                    type="radio" name="button2" id="button3" value="option3"></div>
+              </td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Third group"><input class="form-check-input"
+                    type="radio" name="button2" id="button4" value="Onsite" checked></div>
+              </td>
+            </div>
+          </tr>
+          <tr>
+            <th scope="row">Metal separator interface check necessary?</th>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+              <td>
+                <div class="btn-group mr-2" role="group" aria-label="First group"><input class="form-check-input"
+                    type="radio" name="button3" id="button5" value="option5"></div>
+              </td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Third group"><input class="form-check-input"
+                    type="radio" name="button3" id="button6" value="MetalSeparator" checked></div>
+              </td>
+            </div>
+          </tr>
+          <tr>
+            <th scope="row">Is building control needed?</th>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+              <td>
+                <div class="btn-group mr-2" role="group" aria-label="First group"><input class="form-check-input"
+                    type="radio" name="button4" id="button7" value="option7"></div>
+              </td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Third group"><input class="form-check-input"
+                    type="radio" name="button4" id="button8" value="buildingcontrol" checked></div>
+              </td>
+            </div>
+          </tr>
+        </tbody>
+      </table><input type="submit" value="Save" class="btn btn-primary btn-lg" style="width:100%">
+    </div>
+  </div>
+</form>
+
+<script>
+  var button = document.querySelectorAll('.form-check-input');
+  for (var i = 0; i < 22; i++) {
+    button[i].onclick = myfunction;
+  }
+
+  function myfunction() {
+    var name = this.getAttribute('data-name');
+    var name2 = this.getAttribute('id');
+    if (document.getElementById(name2).checked) {
+      document.getElementById(name).classList.remove("hidden");
+    } else {
+      document.getElementById(name).classList.add("hidden");
+    }
+  }
+
+
+/*
+     // Text
+         var blocks = [
+             [3, 4, 8, 9, 10, 15, 16],
+             [2, 4, 7, 11, 14, 16],
+             [1, 4, 7, 11, 13, 16],
+             [1, 2, 3, 4, 5, 7, 11, 13, 14, 15, 16, 17],
+             [4, 7, 11, 16],
+             [4, 8, 9, 10, 16]
+         ];
+     // Text
+         var blocks = [
+             [3, 4, 8, 9, 10, 15, 16],
+             [2, 4, 7, 11, 14, 16],
+             [1, 4, 7, 11, 13, 16],
+             [1, 2, 3, 4, 5, 7, 11, 13, 14, 15, 16, 17],
+             [4, 7, 11, 16],
+             [4, 8, 9, 10, 16]
+         ];
+{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1095"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1098"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1100"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1101"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1102"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1103"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1104"
+					},
+*/
+
+</script>
+
+
+<style>
+  .hidden {
+    display: none;
+  }
+
+  body {
+    overflow: auto !important;
+  }
+</style>
+{% endblock content %}

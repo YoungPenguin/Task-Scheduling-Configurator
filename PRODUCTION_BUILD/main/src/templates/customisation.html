@@ -1,0 +1,8229 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<nav class="navbar navbar-dark bg-dark">
+   <div class="container-fluid">
+      <span class="navbar-text" style="font-size: 25px; font-weight: 600;">
+         Planning of project {{ name }} strating {{ date }}
+      </span>
+   </div>
+</nav>
+<div class="grid-container" style="padding:0">
+   <div class="item1">
+      <div style="max-height: 85vh;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            {% for row in df.values.tolist  %}
+            <button class="nav-link" id="v-pills-{{row.1}}-tab" data-bs-toggle="pill"
+               data-bs-target="#v-pills-{{row.1}}" type="button" role="tab" aria-controls="v-pills-{{row.1}}"
+               aria-selected="true">
+               {{row.2}} {% if row.26 != "No" %}
+               <p style="color:red;">
+                  Attention
+               </p>
+               {% endif %}
+            </button>
+            {% endfor %}
+         </div>
+      </div>
+   </div>
+   <!--
+	<div id="loading"></div>
+
+	<div class="backgroundVideo">
+		<div class="noiseWrapper">
+			<div class="noiseOverlay"></div>
+		</div>
+	</div>
+	<div id="content">
+		<div id="title">
+			<h1>Under<br>Construction</h1>
+			<div id="logo">
+				<img style="height: 110%;" src="./duck.png">
+
+			</div>
+		</div>
+		<div class="copy">
+			<p>Sometimes i write code to solve problems. I’m currently redesigning DataDuck.dev and updating it with my
+				most recent projects. If you would
+				like to see a sampling of my work or are interested in starting a project together, please get in touch.
+			</p>
+		</div>
+		<div class="copy">
+			<p>Connect with me where you like</p>
+			<ul>
+	
+			</ul>
+		</div>
+	</div>
+
+
+   -->
+   <form action='/table/' method="POST"> {% csrf_token %}
+      <input type="text" class="form-control" style="display: none;" name="date" value="{{ date }}">
+      <div class="tab-content" id="v-pills-tabContent">
+         {% for row in df.values.tolist %}
+         <div class="tab-pane" id="v-pills-{{row.1}}" role="tabpanel" aria-labelledby="v-pills-{{row.1}}-tab">
+            <div class="item2">
+               <table class="table">
+                  <thead>
+                     <tr>
+                        <th scope="col">Predecessors</th>
+                        <th scope="col"></th>
+                        <th scope="col">Include</th>
+                        <th scope="col">
+                        </th>
+                     </tr>
+                  </thead>
+                     <!--
+	<div id="loading"></div>
+
+	<div class="backgroundVideo">
+		<div class="noiseWrapper">
+			<div class="noiseOverlay"></div>
+		</div>
+	</div>
+	<div id="content">
+		<div id="title">
+			<h1>Under<br>Construction</h1>
+			<div id="logo">
+
+			</div>
+		</div>
+		<div class="copy">
+			<p>S
+			</p>
+		</div>
+		<div class="copy">
+			<p>Connect with me where you like</p>
+			<ul>
+	
+			</ul>
+		</div>
+	</div>
+
+   -->
+                  <tbody>
+                     <tr>
+                        <td>
+                           <div style="max-height: 80px; max-width: 200px; border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;   display: block;
+                           margin-left: auto;
+                           margin-right: auto;">
+                              <div class="tab-pane" role="tabpanel">{{row.3}}</div>
+                           </div>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                           <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+                                 value="{{row.1}}" name="box" {% if row.7 == "Yes" %} checked {% endif %}>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="item3">
+               <table class="table">
+                  <thead>
+                     <tr>
+                        <th scope="col">min</th>
+                        <th scope="col">set value</th>
+                        <th scope="col">max</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>{{row.8}}
+                        </td>
+                        <td>
+                           <div class="range-wrap" style="width: 100%;">
+                              <input type="range" class="range" value="{{row.8}}" min="{{row.8}}" max="{{row.9}}"
+                                 step="0.5" name="time-{{row.1}}">
+                              <output class="bubble"></output>
+                           </div>
+                        </td>
+                        <td>{{row.9}}
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="item4">
+               <table class="table">
+                  <thead>
+                     <tr>
+                        <th scope="col">Role</th>
+                        <th scope="col">Optional</th>
+                        <th scope="col">Number</th>
+                        <th scope="col">Rules</th>
+                        <th scope="col">Comments</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {% if row.12 == "nan" or row.13 == "nan" %}
+                     <tr>
+                        <td>CE</td>
+                        <td>
+                           <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="Resources-{{row.1}}" value="SSG"
+                                 id="flexCheckDefault" {% if row.12 == "nan" %} checked {% endif %}>
+                           </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                     </tr>
+                     {% endif %}
+                     {% if row.14 != "nan" or row.15 != "nan"  %}
+                     <tr>
+                        <td>AE</td>
+                        <td>
+                           <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="Resources-{{row.1}}" value="AE"
+                                 id="flexCheckDefault" {% if row.14 != "nan" %} checked {% endif %}>
+                           </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                     </tr>
+                     {% endif %}
+                     {% if row.16 != "nan" or row.17 != "nan" %}
+                     <tr>
+                        <td>ME</td>
+                        <td>
+                           <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="Resources-{{row.1}}" value="MS"
+                                 id="flexCheckDefault" {% if row.17 != "nan" %} checked {% endif %}>
+                           </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                     </tr>
+                     {% endif %}
+                     {% if row.18 != "nan" or row.19 != "nan" %}
+                     <tr>
+                        <td>EE</td>
+                        <td>
+                           <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="Resources-{{row.1}}" value="EE"
+                                 id="flexCheckDefault" {% if row.18 != "nan" %} checked {% endif %}>
+                           </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                     </tr>
+                     {% endif %}
+                     {% if row.20 != "nan" or row.21 != "nan" %}
+                     <tr>
+                        <td>PM</td>
+                        <td>
+                           <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="Resources-{{row.1}}" value="PM"
+                                 id="flexCheckDefault" {% if row.20 != "nan" %} checked {% endif %}>
+                           </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                     </tr>
+                     {% endif %}
+                     {% if row.22 != "nan" or row.23 != "nan" %}
+                     <tr>
+                        <td>PT</td>
+                        <td>
+                           <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="Resources-{{row.1}}" value="External"
+                                 id="flexCheckDefault" {% if row.22 != "nan" %} checked {% endif %}>
+                           </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                     </tr>
+                     {% endif %}
+                     {% if row.24 != "nan" or row.25 != "nan" %}
+                     <tr>
+                        <td>PE</td>
+                        <td>
+                           <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="Resources-{{row.1}}" value="Engeneer"
+                                 id="flexCheckDefault" {% if row.24 != "nan" %} checked {% endif %}>
+                           </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                     </tr>
+                     {% endif %}
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         {% endfor %}
+         <input type="submit" value='Preview report' class="btn btn-primary btn-lg" style="
+    width: 100%;
+"></input>
+      </div>
+   </form>
+</div>
+
+<style>
+   .range-wrap {
+      position: relative;
+      margin: 0 auto 3rem;
+   }
+
+   .range {
+      width: 100%;
+   }
+
+   .bubble {
+      top: 1rem;
+      background: red;
+      color: white;
+      padding: 4px 12px;
+      position: absolute;
+      border-radius: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+   }
+
+   .bubble::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: red;
+      top: -1px;
+      left: 50%;
+   }
+</style>
+
+<script>
+
+	const obj = (
+		{
+			"data":
+				[
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1000"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1050"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1051"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1052"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1053"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1054"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1055"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1056"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1057"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1058"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1059"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1060"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1061"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1062"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1063"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1064"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1065"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1066"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1067"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1068"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1069"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1070"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1071"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1072"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1073"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1074"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1092"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1093"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1095"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1098"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1100"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1101"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1102"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1103"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1104"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1105"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1106"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1107"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1110"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1111"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1112"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1113"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1114"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1115"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1116"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1117"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1118"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1119"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1120"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1121"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1122"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1123"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1124"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1125"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1126"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1127"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1128"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1129"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1130"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1131"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1140"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1147"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1148"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1150"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1151"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1152"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1153"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1154"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1155"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1156"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1157"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1158"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1159"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1160"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1161"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1162"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1164"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1165"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1166"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1167"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1168"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1169"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1170"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1171"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1172"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1173"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1174"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1175"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1200"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1201"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1202"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1203"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1204"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1205"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1206"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1207"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1208"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1209"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1210"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1211"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1213"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1214"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1215"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1216"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1217"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1218"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1219"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1220"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1221"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1240"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1250"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1251"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1252"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1253"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1254"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1255"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1256"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1257"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1259"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1260"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1261"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1263"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1264"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1265"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1266"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1267"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1268"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1270"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1271"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1300"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1301"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1302"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1303"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1304"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1306"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1307"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1308"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1309"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1310"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1311"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1312"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1313"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1314"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1315"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1316"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1317"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1318"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1319"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1320"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1321"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1322"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1323"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1324"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1325"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1326"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1327"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1328"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1329"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1350"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1352"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1353"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1354"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1355"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1356"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1357"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1358"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1359"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1360"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1361"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1362"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1363"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1364"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1365"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1366"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1367"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1368"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1369"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1370"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1371"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1400"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1401"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1402"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1403"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1406"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1407"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1408"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1409"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1410"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1411"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1412"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1413"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1414"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1415"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1416"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1417"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1418"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1419"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1420"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1421"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1422"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1423"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1424"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1425"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1426"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1427"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1428"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1429"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1430"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1432"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1433"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1434"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1435"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1436"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1437"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1438"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1439"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1440"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1441"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1448"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1450"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1451"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1452"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1453"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1454"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1455"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1456"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1457"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1458"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1459"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1460"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1462"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1463"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1464"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1466"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1467"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1468"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1470"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1471"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1472"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1473"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1500"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Tårnby",
+						"KommuneKode": "185",
+						"Postnr": "1532"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Tårnby",
+						"KommuneKode": "185",
+						"Postnr": "1533"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1550"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1551"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1552"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1553"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1554"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1555"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1556"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1557"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1558"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1559"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1560"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1561"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1562"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1563"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1564"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1566"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1567"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1568"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1569"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1570"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1571"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1572"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1573"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1574"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1575"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1576"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1577"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1592"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1599"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1600"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1601"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1602"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1603"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1604"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1605"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1606"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1607"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1608"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1609"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1610"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1611"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1612"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1613"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1614"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1615"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1616"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1617"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1618"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1619"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1620"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1621"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1622"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1623"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1624"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1630"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1631"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1632"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1633"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1634"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1635"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1650"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1651"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1652"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1653"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1654"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1655"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1656"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1657"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1658"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1659"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1660"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1661"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1662"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1663"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1664"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1665"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1666"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1667"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1668"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1669"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1670"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1671"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1672"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1673"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1674"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1675"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1676"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1677"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1699"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1700"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1701"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1702"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1703"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1704"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1705"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1706"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1707"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1708"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1709"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1710"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1711"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1712"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1714"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1715"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1716"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1717"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1718"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1719"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1720"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1721"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1722"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1723"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1724"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1725"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1726"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1727"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1728"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1729"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1730"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1731"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1732"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1733"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1734"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1735"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1736"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1737"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1738"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1739"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1749"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1750"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1751"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1752"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1753"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1754"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1755"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1756"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1757"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1758"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1759"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1760"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1761"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1762"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1763"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1764"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1765"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1766"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1770"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1771"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1772"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1773"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1774"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1775"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1777"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1780"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1785"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1786"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1787"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1790"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "1799"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1800"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1801"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1802"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1803"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1804"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1805"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1806"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1807"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1808"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1809"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1810"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1811"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1812"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1813"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1814"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1815"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1816"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1817"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1818"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1819"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1820"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1822"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1823"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1824"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1825"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1826"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1827"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1828"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1829"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1850"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1851"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1852"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1853"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1854"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1855"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1856"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1857"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1860"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1861"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1862"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1863"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1864"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1865"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1866"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1867"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1868"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1870"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1871"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1872"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1873"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1874"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1875"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1876"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1877"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1878"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1879"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1900"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1901"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1902"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1903"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1904"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1905"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1906"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1908"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1909"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1910"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1911"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1912"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1913"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1914"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1915"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1916"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1917"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1920"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1921"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1922"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1923"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1924"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1925"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1926"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1927"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1928"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1950"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1951"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1952"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1953"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1954"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1955"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1956"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1957"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1958"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1959"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1960"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1961"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1962"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1963"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1964"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1965"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1966"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1967"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1970"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1971"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1972"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1973"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "1974"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederiksberg",
+						"KommuneKode": "147",
+						"Postnr": "2000"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "2100"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "2150"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "2200"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "2300"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "2400"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "2450"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "2500"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Glostrup",
+						"KommuneKode": "161",
+						"Postnr": "2600"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Brøndby",
+						"KommuneKode": "153",
+						"Postnr": "2605"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Rødovre",
+						"KommuneKode": "175",
+						"Postnr": "2610"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Albertslund",
+						"KommuneKode": "165",
+						"Postnr": "2620"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Vallensbæk",
+						"KommuneKode": "187",
+						"Postnr": "2625"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Høje-Taastrup",
+						"KommuneKode": "169",
+						"Postnr": "2630"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Ishøj",
+						"KommuneKode": "183",
+						"Postnr": "2635"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Greve",
+						"KommuneKode": "253",
+						"Postnr": "2640"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Roskilde",
+						"KommuneKode": "265",
+						"Postnr": "2644"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Hvidovre",
+						"KommuneKode": "167",
+						"Postnr": "2650"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Brøndby",
+						"KommuneKode": "153",
+						"Postnr": "2660"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Vallensbæk",
+						"KommuneKode": "187",
+						"Postnr": "2665"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Greve",
+						"KommuneKode": "253",
+						"Postnr": "2670"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Solrød",
+						"KommuneKode": "269",
+						"Postnr": "2680"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Greve",
+						"KommuneKode": "253",
+						"Postnr": "2690"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "2700"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "2720"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Herlev",
+						"KommuneKode": "163",
+						"Postnr": "2730"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Ballerup",
+						"KommuneKode": "151",
+						"Postnr": "2740"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Ballerup",
+						"KommuneKode": "151",
+						"Postnr": "2750"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Ballerup",
+						"KommuneKode": "151",
+						"Postnr": "2760"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Egedal",
+						"KommuneKode": "240",
+						"Postnr": "2765"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Tårnby",
+						"KommuneKode": "185",
+						"Postnr": "2770"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Dragør",
+						"KommuneKode": "155",
+						"Postnr": "2791"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Lyngby-Taarbæk",
+						"KommuneKode": "173",
+						"Postnr": "2800"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Gentofte",
+						"KommuneKode": "157",
+						"Postnr": "2820"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Rudersdal",
+						"KommuneKode": "230",
+						"Postnr": "2830"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Rudersdal",
+						"KommuneKode": "230",
+						"Postnr": "2840"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Rudersdal",
+						"KommuneKode": "230",
+						"Postnr": "2850"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Gladsaxe",
+						"KommuneKode": "159",
+						"Postnr": "2860"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Gentofte",
+						"KommuneKode": "157",
+						"Postnr": "2870"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Gladsaxe",
+						"KommuneKode": "159",
+						"Postnr": "2880"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Gentofte",
+						"KommuneKode": "157",
+						"Postnr": "2900"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Gentofte",
+						"KommuneKode": "157",
+						"Postnr": "2920"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Lyngby-Taarbæk",
+						"KommuneKode": "173",
+						"Postnr": "2930"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Rudersdal",
+						"KommuneKode": "230",
+						"Postnr": "2942"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Rudersdal",
+						"KommuneKode": "230",
+						"Postnr": "2950"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Hørsholm",
+						"KommuneKode": "223",
+						"Postnr": "2960"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Hørsholm",
+						"KommuneKode": "223",
+						"Postnr": "2970"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Hørsholm",
+						"KommuneKode": "223",
+						"Postnr": "2980"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Fredensborg",
+						"KommuneKode": "210",
+						"Postnr": "2990"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Helsingør",
+						"KommuneKode": "217",
+						"Postnr": "3000"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Fredensborg",
+						"KommuneKode": "210",
+						"Postnr": "3050"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Helsingør",
+						"KommuneKode": "217",
+						"Postnr": "3060"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Helsingør",
+						"KommuneKode": "217",
+						"Postnr": "3070"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Helsingør",
+						"KommuneKode": "217",
+						"Postnr": "3080"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Helsingør",
+						"KommuneKode": "217",
+						"Postnr": "3100"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Gribskov",
+						"KommuneKode": "270",
+						"Postnr": "3120"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Helsingør",
+						"KommuneKode": "217",
+						"Postnr": "3140"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Helsingør",
+						"KommuneKode": "217",
+						"Postnr": "3150"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Gribskov",
+						"KommuneKode": "270",
+						"Postnr": "3200"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Gribskov",
+						"KommuneKode": "270",
+						"Postnr": "3210"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Gribskov",
+						"KommuneKode": "270",
+						"Postnr": "3220"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Gribskov",
+						"KommuneKode": "270",
+						"Postnr": "3230"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Gribskov",
+						"KommuneKode": "270",
+						"Postnr": "3250"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Halsnæs",
+						"KommuneKode": "260",
+						"Postnr": "3300"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Halsnæs",
+						"KommuneKode": "260",
+						"Postnr": "3310"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Hillerød",
+						"KommuneKode": "219",
+						"Postnr": "3320"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Hillerød",
+						"KommuneKode": "219",
+						"Postnr": "3330"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Halsnæs",
+						"KommuneKode": "260",
+						"Postnr": "3360"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Halsnæs",
+						"KommuneKode": "260",
+						"Postnr": "3370"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Halsnæs",
+						"KommuneKode": "260",
+						"Postnr": "3390"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Hillerød",
+						"KommuneKode": "219",
+						"Postnr": "3400"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Allerød",
+						"KommuneKode": "201",
+						"Postnr": "3450"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Furesø",
+						"KommuneKode": "190",
+						"Postnr": "3460"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Fredensborg",
+						"KommuneKode": "210",
+						"Postnr": "3480"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Helsingør",
+						"KommuneKode": "217",
+						"Postnr": "3490"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Furesø",
+						"KommuneKode": "190",
+						"Postnr": "3500"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Furesø",
+						"KommuneKode": "190",
+						"Postnr": "3520"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Allerød",
+						"KommuneKode": "201",
+						"Postnr": "3540"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederikssund",
+						"KommuneKode": "250",
+						"Postnr": "3550"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederikssund",
+						"KommuneKode": "250",
+						"Postnr": "3600"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederikssund",
+						"KommuneKode": "250",
+						"Postnr": "3630"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Egedal",
+						"KommuneKode": "240",
+						"Postnr": "3650"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Egedal",
+						"KommuneKode": "240",
+						"Postnr": "3660"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Egedal",
+						"KommuneKode": "240",
+						"Postnr": "3670"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Bornholm",
+						"KommuneKode": "400",
+						"Postnr": "3700"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Bornholm",
+						"KommuneKode": "400",
+						"Postnr": "3720"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Bornholm",
+						"KommuneKode": "400",
+						"Postnr": "3730"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Bornholm",
+						"KommuneKode": "400",
+						"Postnr": "3740"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Bornholm",
+						"KommuneKode": "400",
+						"Postnr": "3751"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Bornholm",
+						"KommuneKode": "400",
+						"Postnr": "3760"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Bornholm",
+						"KommuneKode": "400",
+						"Postnr": "3770"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Bornholm",
+						"KommuneKode": "400",
+						"Postnr": "3782"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Bornholm",
+						"KommuneKode": "400",
+						"Postnr": "3790"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Roskilde",
+						"KommuneKode": "265",
+						"Postnr": "4000"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Greve",
+						"KommuneKode": "253",
+						"Postnr": "4030"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Roskilde",
+						"KommuneKode": "265",
+						"Postnr": "4040"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Frederikssund",
+						"KommuneKode": "250",
+						"Postnr": "4050"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lejre",
+						"KommuneKode": "350",
+						"Postnr": "4060"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lejre",
+						"KommuneKode": "350",
+						"Postnr": "4070"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Ringsted",
+						"KommuneKode": "329",
+						"Postnr": "4100"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Roskilde",
+						"KommuneKode": "265",
+						"Postnr": "4130"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Køge",
+						"KommuneKode": "259",
+						"Postnr": "4140"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Næstved",
+						"KommuneKode": "370",
+						"Postnr": "4160"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Næstved",
+						"KommuneKode": "370",
+						"Postnr": "4171"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Ringsted",
+						"KommuneKode": "329",
+						"Postnr": "4173"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Ringsted",
+						"KommuneKode": "329",
+						"Postnr": "4174"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Sorø",
+						"KommuneKode": "340",
+						"Postnr": "4180"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Sorø",
+						"KommuneKode": "340",
+						"Postnr": "4190"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Slagelse",
+						"KommuneKode": "330",
+						"Postnr": "4200"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Slagelse",
+						"KommuneKode": "330",
+						"Postnr": "4220"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Slagelse",
+						"KommuneKode": "330",
+						"Postnr": "4230"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Slagelse",
+						"KommuneKode": "330",
+						"Postnr": "4241"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Slagelse",
+						"KommuneKode": "330",
+						"Postnr": "4242"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Næstved",
+						"KommuneKode": "370",
+						"Postnr": "4243"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Slagelse",
+						"KommuneKode": "330",
+						"Postnr": "4244"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Slagelse",
+						"KommuneKode": "330",
+						"Postnr": "4245"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Næstved",
+						"KommuneKode": "370",
+						"Postnr": "4250"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Slagelse",
+						"KommuneKode": "330",
+						"Postnr": "4261"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Næstved",
+						"KommuneKode": "370",
+						"Postnr": "4262"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Slagelse",
+						"KommuneKode": "330",
+						"Postnr": "4270"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Kalundborg",
+						"KommuneKode": "326",
+						"Postnr": "4281"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Sorø",
+						"KommuneKode": "340",
+						"Postnr": "4291"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Sorø",
+						"KommuneKode": "340",
+						"Postnr": "4293"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Sorø",
+						"KommuneKode": "340",
+						"Postnr": "4295"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Sorø",
+						"KommuneKode": "340",
+						"Postnr": "4296"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Holbæk",
+						"KommuneKode": "316",
+						"Postnr": "4300"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Holbæk",
+						"KommuneKode": "316",
+						"Postnr": "4305"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lejre",
+						"KommuneKode": "350",
+						"Postnr": "4320"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lejre",
+						"KommuneKode": "350",
+						"Postnr": "4330"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lejre",
+						"KommuneKode": "350",
+						"Postnr": "4340"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Holbæk",
+						"KommuneKode": "316",
+						"Postnr": "4350"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Holbæk",
+						"KommuneKode": "316",
+						"Postnr": "4360"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Ringsted",
+						"KommuneKode": "329",
+						"Postnr": "4370"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Holbæk",
+						"KommuneKode": "316",
+						"Postnr": "4390"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Kalundborg",
+						"KommuneKode": "326",
+						"Postnr": "4400"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Holbæk",
+						"KommuneKode": "316",
+						"Postnr": "4420"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Holbæk",
+						"KommuneKode": "316",
+						"Postnr": "4440"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Kalundborg",
+						"KommuneKode": "326",
+						"Postnr": "4450"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Kalundborg",
+						"KommuneKode": "326",
+						"Postnr": "4460"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Kalundborg",
+						"KommuneKode": "326",
+						"Postnr": "4470"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Kalundborg",
+						"KommuneKode": "326",
+						"Postnr": "4480"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Kalundborg",
+						"KommuneKode": "326",
+						"Postnr": "4490"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Odsherred",
+						"KommuneKode": "306",
+						"Postnr": "4500"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Holbæk",
+						"KommuneKode": "316",
+						"Postnr": "4520"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Holbæk",
+						"KommuneKode": "316",
+						"Postnr": "4532"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Odsherred",
+						"KommuneKode": "306",
+						"Postnr": "4534"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Odsherred",
+						"KommuneKode": "306",
+						"Postnr": "4540"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Odsherred",
+						"KommuneKode": "306",
+						"Postnr": "4550"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Odsherred",
+						"KommuneKode": "306",
+						"Postnr": "4560"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Odsherred",
+						"KommuneKode": "306",
+						"Postnr": "4571"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Odsherred",
+						"KommuneKode": "306",
+						"Postnr": "4572"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Odsherred",
+						"KommuneKode": "306",
+						"Postnr": "4573"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Odsherred",
+						"KommuneKode": "306",
+						"Postnr": "4581"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Odsherred",
+						"KommuneKode": "306",
+						"Postnr": "4583"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Odsherred",
+						"KommuneKode": "306",
+						"Postnr": "4591"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Kalundborg",
+						"KommuneKode": "326",
+						"Postnr": "4592"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Kalundborg",
+						"KommuneKode": "326",
+						"Postnr": "4593"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Roskilde",
+						"KommuneKode": "265",
+						"Postnr": "4621"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Solrød",
+						"KommuneKode": "269",
+						"Postnr": "4622"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Køge",
+						"KommuneKode": "259",
+						"Postnr": "4623"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Køge",
+						"KommuneKode": "259",
+						"Postnr": "4632"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Faxe",
+						"KommuneKode": "320",
+						"Postnr": "4640"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Stevns",
+						"KommuneKode": "336",
+						"Postnr": "4652"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Faxe",
+						"KommuneKode": "320",
+						"Postnr": "4653"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Faxe",
+						"KommuneKode": "320",
+						"Postnr": "4654"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Stevns",
+						"KommuneKode": "336",
+						"Postnr": "4660"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Stevns",
+						"KommuneKode": "336",
+						"Postnr": "4671"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Stevns",
+						"KommuneKode": "336",
+						"Postnr": "4672"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Stevns",
+						"KommuneKode": "336",
+						"Postnr": "4673"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Køge",
+						"KommuneKode": "259",
+						"Postnr": "4681"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Køge",
+						"KommuneKode": "259",
+						"Postnr": "4682"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Faxe",
+						"KommuneKode": "320",
+						"Postnr": "4683"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Næstved",
+						"KommuneKode": "370",
+						"Postnr": "4684"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Næstved",
+						"KommuneKode": "370",
+						"Postnr": "4700"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Vordingborg",
+						"KommuneKode": "390",
+						"Postnr": "4720"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Næstved",
+						"KommuneKode": "370",
+						"Postnr": "4733"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Vordingborg",
+						"KommuneKode": "390",
+						"Postnr": "4735"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Næstved",
+						"KommuneKode": "370",
+						"Postnr": "4736"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Vordingborg",
+						"KommuneKode": "390",
+						"Postnr": "4750"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Vordingborg",
+						"KommuneKode": "390",
+						"Postnr": "4760"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Vordingborg",
+						"KommuneKode": "390",
+						"Postnr": "4771"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Vordingborg",
+						"KommuneKode": "390",
+						"Postnr": "4772"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Vordingborg",
+						"KommuneKode": "390",
+						"Postnr": "4773"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Vordingborg",
+						"KommuneKode": "390",
+						"Postnr": "4780"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Vordingborg",
+						"KommuneKode": "390",
+						"Postnr": "4791"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Vordingborg",
+						"KommuneKode": "390",
+						"Postnr": "4792"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Vordingborg",
+						"KommuneKode": "390",
+						"Postnr": "4793"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4800"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4840"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4850"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4862"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4863"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4871"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4872"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4873"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4874"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4880"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4891"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4892"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4894"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4895"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4900"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4912"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4913"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4920"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4930"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4941"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4942"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4943"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4944"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4945"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4951"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4952"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4953"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4960"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4970"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Lolland",
+						"KommuneKode": "360",
+						"Postnr": "4983"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Guldborgsund",
+						"KommuneKode": "376",
+						"Postnr": "4990"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Odense",
+						"KommuneKode": "461",
+						"Postnr": "5000"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Odense",
+						"KommuneKode": "461",
+						"Postnr": "5200"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Odense",
+						"KommuneKode": "461",
+						"Postnr": "5210"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Odense",
+						"KommuneKode": "461",
+						"Postnr": "5220"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Odense",
+						"KommuneKode": "461",
+						"Postnr": "5230"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Odense",
+						"KommuneKode": "461",
+						"Postnr": "5240"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Odense",
+						"KommuneKode": "461",
+						"Postnr": "5250"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Odense",
+						"KommuneKode": "461",
+						"Postnr": "5260"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Odense",
+						"KommuneKode": "461",
+						"Postnr": "5270"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kerteminde",
+						"KommuneKode": "440",
+						"Postnr": "5290"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kerteminde",
+						"KommuneKode": "440",
+						"Postnr": "5300"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Odense",
+						"KommuneKode": "461",
+						"Postnr": "5320"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kerteminde",
+						"KommuneKode": "440",
+						"Postnr": "5330"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kerteminde",
+						"KommuneKode": "440",
+						"Postnr": "5350"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kerteminde",
+						"KommuneKode": "440",
+						"Postnr": "5370"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kerteminde",
+						"KommuneKode": "440",
+						"Postnr": "5380"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kerteminde",
+						"KommuneKode": "440",
+						"Postnr": "5390"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Nordfyns",
+						"KommuneKode": "480",
+						"Postnr": "5400"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Nordfyns",
+						"KommuneKode": "480",
+						"Postnr": "5450"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Nordfyns",
+						"KommuneKode": "480",
+						"Postnr": "5462"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Middelfart",
+						"KommuneKode": "410",
+						"Postnr": "5463"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Middelfart",
+						"KommuneKode": "410",
+						"Postnr": "5464"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Middelfart",
+						"KommuneKode": "410",
+						"Postnr": "5466"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Nordfyns",
+						"KommuneKode": "480",
+						"Postnr": "5471"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Nordfyns",
+						"KommuneKode": "480",
+						"Postnr": "5474"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Nordfyns",
+						"KommuneKode": "480",
+						"Postnr": "5485"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Nordfyns",
+						"KommuneKode": "480",
+						"Postnr": "5491"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Assens",
+						"KommuneKode": "420",
+						"Postnr": "5492"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Middelfart",
+						"KommuneKode": "410",
+						"Postnr": "5500"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kerteminde",
+						"KommuneKode": "440",
+						"Postnr": "5540"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Faaborg-Midtfyn",
+						"KommuneKode": "430",
+						"Postnr": "5550"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Assens",
+						"KommuneKode": "420",
+						"Postnr": "5560"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Middelfart",
+						"KommuneKode": "410",
+						"Postnr": "5580"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Middelfart",
+						"KommuneKode": "410",
+						"Postnr": "5591"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Middelfart",
+						"KommuneKode": "410",
+						"Postnr": "5592"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Faaborg-Midtfyn",
+						"KommuneKode": "430",
+						"Postnr": "5600"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Faaborg-Midtfyn",
+						"KommuneKode": "430",
+						"Postnr": "5601"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Faaborg-Midtfyn",
+						"KommuneKode": "430",
+						"Postnr": "5602"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Faaborg-Midtfyn",
+						"KommuneKode": "430",
+						"Postnr": "5603"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Assens",
+						"KommuneKode": "420",
+						"Postnr": "5610"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Assens",
+						"KommuneKode": "420",
+						"Postnr": "5620"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Assens",
+						"KommuneKode": "420",
+						"Postnr": "5631"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Faaborg-Midtfyn",
+						"KommuneKode": "430",
+						"Postnr": "5642"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Faaborg-Midtfyn",
+						"KommuneKode": "430",
+						"Postnr": "5672"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Assens",
+						"KommuneKode": "420",
+						"Postnr": "5683"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Assens",
+						"KommuneKode": "420",
+						"Postnr": "5690"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Svendborg",
+						"KommuneKode": "479",
+						"Postnr": "5700"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Faaborg-Midtfyn",
+						"KommuneKode": "430",
+						"Postnr": "5750"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Svendborg",
+						"KommuneKode": "479",
+						"Postnr": "5762"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Svendborg",
+						"KommuneKode": "479",
+						"Postnr": "5771"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Faaborg-Midtfyn",
+						"KommuneKode": "430",
+						"Postnr": "5772"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Faaborg-Midtfyn",
+						"KommuneKode": "430",
+						"Postnr": "5792"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Nyborg",
+						"KommuneKode": "450",
+						"Postnr": "5800"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Nyborg",
+						"KommuneKode": "450",
+						"Postnr": "5853"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Faaborg-Midtfyn",
+						"KommuneKode": "430",
+						"Postnr": "5854"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Faaborg-Midtfyn",
+						"KommuneKode": "430",
+						"Postnr": "5856"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Faaborg-Midtfyn",
+						"KommuneKode": "430",
+						"Postnr": "5863"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Nyborg",
+						"KommuneKode": "450",
+						"Postnr": "5871"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Nyborg",
+						"KommuneKode": "450",
+						"Postnr": "5874"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Svendborg",
+						"KommuneKode": "479",
+						"Postnr": "5881"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Svendborg",
+						"KommuneKode": "479",
+						"Postnr": "5882"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Svendborg",
+						"KommuneKode": "479",
+						"Postnr": "5883"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Svendborg",
+						"KommuneKode": "479",
+						"Postnr": "5884"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Svendborg",
+						"KommuneKode": "479",
+						"Postnr": "5892"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Langeland",
+						"KommuneKode": "482",
+						"Postnr": "5900"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Langeland",
+						"KommuneKode": "482",
+						"Postnr": "5932"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Langeland",
+						"KommuneKode": "482",
+						"Postnr": "5935"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Langeland",
+						"KommuneKode": "482",
+						"Postnr": "5943"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Langeland",
+						"KommuneKode": "482",
+						"Postnr": "5953"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Ærø",
+						"KommuneKode": "492",
+						"Postnr": "5960"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Ærø",
+						"KommuneKode": "492",
+						"Postnr": "5965"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Ærø",
+						"KommuneKode": "492",
+						"Postnr": "5970"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Ærø",
+						"KommuneKode": "492",
+						"Postnr": "5985"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kolding",
+						"KommuneKode": "621",
+						"Postnr": "6000"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kolding",
+						"KommuneKode": "621",
+						"Postnr": "6040"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kolding",
+						"KommuneKode": "621",
+						"Postnr": "6051"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kolding",
+						"KommuneKode": "621",
+						"Postnr": "6052"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kolding",
+						"KommuneKode": "621",
+						"Postnr": "6064"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Haderslev",
+						"KommuneKode": "510",
+						"Postnr": "6070"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kolding",
+						"KommuneKode": "621",
+						"Postnr": "6091"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kolding",
+						"KommuneKode": "621",
+						"Postnr": "6092"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kolding",
+						"KommuneKode": "621",
+						"Postnr": "6093"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kolding",
+						"KommuneKode": "621",
+						"Postnr": "6094"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Haderslev",
+						"KommuneKode": "510",
+						"Postnr": "6100"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Aabenraa",
+						"KommuneKode": "580",
+						"Postnr": "6200"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Aabenraa",
+						"KommuneKode": "580",
+						"Postnr": "6210"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Aabenraa",
+						"KommuneKode": "580",
+						"Postnr": "6230"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Tønder",
+						"KommuneKode": "550",
+						"Postnr": "6240"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Tønder",
+						"KommuneKode": "550",
+						"Postnr": "6261"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Tønder",
+						"KommuneKode": "550",
+						"Postnr": "6270"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Tønder",
+						"KommuneKode": "550",
+						"Postnr": "6280"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Sønderborg",
+						"KommuneKode": "540",
+						"Postnr": "6300"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Sønderborg",
+						"KommuneKode": "540",
+						"Postnr": "6310"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Sønderborg",
+						"KommuneKode": "540",
+						"Postnr": "6320"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Aabenraa",
+						"KommuneKode": "580",
+						"Postnr": "6330"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Aabenraa",
+						"KommuneKode": "580",
+						"Postnr": "6340"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Aabenraa",
+						"KommuneKode": "580",
+						"Postnr": "6360"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Aabenraa",
+						"KommuneKode": "580",
+						"Postnr": "6372"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Aabenraa",
+						"KommuneKode": "580",
+						"Postnr": "6392"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Sønderborg",
+						"KommuneKode": "540",
+						"Postnr": "6400"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Sønderborg",
+						"KommuneKode": "540",
+						"Postnr": "6430"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Sønderborg",
+						"KommuneKode": "540",
+						"Postnr": "6440"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Sønderborg",
+						"KommuneKode": "540",
+						"Postnr": "6470"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Haderslev",
+						"KommuneKode": "510",
+						"Postnr": "6500"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Haderslev",
+						"KommuneKode": "510",
+						"Postnr": "6510"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Haderslev",
+						"KommuneKode": "510",
+						"Postnr": "6520"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Aabenraa",
+						"KommuneKode": "580",
+						"Postnr": "6534"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Tønder",
+						"KommuneKode": "550",
+						"Postnr": "6535"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Tønder",
+						"KommuneKode": "550",
+						"Postnr": "6541"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kolding",
+						"KommuneKode": "621",
+						"Postnr": "6560"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kolding",
+						"KommuneKode": "621",
+						"Postnr": "6580"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejen",
+						"KommuneKode": "575",
+						"Postnr": "6600"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejen",
+						"KommuneKode": "575",
+						"Postnr": "6621"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejen",
+						"KommuneKode": "575",
+						"Postnr": "6622"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Billund",
+						"KommuneKode": "530",
+						"Postnr": "6623"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejen",
+						"KommuneKode": "575",
+						"Postnr": "6630"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Kolding",
+						"KommuneKode": "621",
+						"Postnr": "6640"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejen",
+						"KommuneKode": "575",
+						"Postnr": "6650"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejen",
+						"KommuneKode": "575",
+						"Postnr": "6660"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejen",
+						"KommuneKode": "575",
+						"Postnr": "6670"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejen",
+						"KommuneKode": "575",
+						"Postnr": "6682"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejen",
+						"KommuneKode": "575",
+						"Postnr": "6683"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejen",
+						"KommuneKode": "575",
+						"Postnr": "6690"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Esbjerg",
+						"KommuneKode": "561",
+						"Postnr": "6700"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Esbjerg",
+						"KommuneKode": "561",
+						"Postnr": "6705"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Esbjerg",
+						"KommuneKode": "561",
+						"Postnr": "6710"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Esbjerg",
+						"KommuneKode": "561",
+						"Postnr": "6715"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Fanø",
+						"KommuneKode": "563",
+						"Postnr": "6720"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Esbjerg",
+						"KommuneKode": "561",
+						"Postnr": "6731"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Esbjerg",
+						"KommuneKode": "561",
+						"Postnr": "6740"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejen",
+						"KommuneKode": "575",
+						"Postnr": "6752"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejen",
+						"KommuneKode": "575",
+						"Postnr": "6753"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Esbjerg",
+						"KommuneKode": "561",
+						"Postnr": "6760"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Esbjerg",
+						"KommuneKode": "561",
+						"Postnr": "6771"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Tønder",
+						"KommuneKode": "550",
+						"Postnr": "6780"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Tønder",
+						"KommuneKode": "550",
+						"Postnr": "6792"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Varde",
+						"KommuneKode": "573",
+						"Postnr": "6800"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Esbjerg",
+						"KommuneKode": "561",
+						"Postnr": "6818"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Varde",
+						"KommuneKode": "573",
+						"Postnr": "6823"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ringkøbing-Skjern",
+						"KommuneKode": "760",
+						"Postnr": "6830"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Varde",
+						"KommuneKode": "573",
+						"Postnr": "6840"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Varde",
+						"KommuneKode": "573",
+						"Postnr": "6851"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Varde",
+						"KommuneKode": "573",
+						"Postnr": "6852"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Varde",
+						"KommuneKode": "573",
+						"Postnr": "6853"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Varde",
+						"KommuneKode": "573",
+						"Postnr": "6854"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Varde",
+						"KommuneKode": "573",
+						"Postnr": "6855"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Varde",
+						"KommuneKode": "573",
+						"Postnr": "6857"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Varde",
+						"KommuneKode": "573",
+						"Postnr": "6862"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Varde",
+						"KommuneKode": "573",
+						"Postnr": "6870"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Varde",
+						"KommuneKode": "573",
+						"Postnr": "6880"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ringkøbing-Skjern",
+						"KommuneKode": "760",
+						"Postnr": "6893"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ringkøbing-Skjern",
+						"KommuneKode": "760",
+						"Postnr": "6900"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ringkøbing-Skjern",
+						"KommuneKode": "760",
+						"Postnr": "6920"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Herning",
+						"KommuneKode": "657",
+						"Postnr": "6933"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ringkøbing-Skjern",
+						"KommuneKode": "760",
+						"Postnr": "6940"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ringkøbing-Skjern",
+						"KommuneKode": "760",
+						"Postnr": "6950"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ringkøbing-Skjern",
+						"KommuneKode": "760",
+						"Postnr": "6960"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ringkøbing-Skjern",
+						"KommuneKode": "760",
+						"Postnr": "6971"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ringkøbing-Skjern",
+						"KommuneKode": "760",
+						"Postnr": "6973"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ringkøbing-Skjern",
+						"KommuneKode": "760",
+						"Postnr": "6980"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ringkøbing-Skjern",
+						"KommuneKode": "760",
+						"Postnr": "6990"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Fredericia",
+						"KommuneKode": "607",
+						"Postnr": "7000"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Fredericia",
+						"KommuneKode": "607",
+						"Postnr": "7007"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejle",
+						"KommuneKode": "630",
+						"Postnr": "7080"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Hedensted",
+						"KommuneKode": "766",
+						"Postnr": "7100"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejle",
+						"KommuneKode": "630",
+						"Postnr": "7120"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Hedensted",
+						"KommuneKode": "766",
+						"Postnr": "7130"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Hedensted",
+						"KommuneKode": "766",
+						"Postnr": "7140"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Hedensted",
+						"KommuneKode": "766",
+						"Postnr": "7150"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Hedensted",
+						"KommuneKode": "766",
+						"Postnr": "7160"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Hedensted",
+						"KommuneKode": "766",
+						"Postnr": "7171"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejle",
+						"KommuneKode": "630",
+						"Postnr": "7173"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejle",
+						"KommuneKode": "630",
+						"Postnr": "7182"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejle",
+						"KommuneKode": "630",
+						"Postnr": "7183"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejle",
+						"KommuneKode": "630",
+						"Postnr": "7184"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Billund",
+						"KommuneKode": "530",
+						"Postnr": "7190"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Billund",
+						"KommuneKode": "530",
+						"Postnr": "7200"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Billund",
+						"KommuneKode": "530",
+						"Postnr": "7250"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Billund",
+						"KommuneKode": "530",
+						"Postnr": "7260"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ringkøbing-Skjern",
+						"KommuneKode": "760",
+						"Postnr": "7270"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ringkøbing-Skjern",
+						"KommuneKode": "760",
+						"Postnr": "7280"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejle",
+						"KommuneKode": "630",
+						"Postnr": "7300"
+					},
+					{
+						"Region": "Syddanmark",
+						"RegionsKode": "1083",
+						"Kommune": "Vejle",
+						"KommuneKode": "630",
+						"Postnr": "7321"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ikast-Brande",
+						"KommuneKode": "756",
+						"Postnr": "7330"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ikast-Brande",
+						"KommuneKode": "756",
+						"Postnr": "7361"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ikast-Brande",
+						"KommuneKode": "756",
+						"Postnr": "7362"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Herning",
+						"KommuneKode": "657",
+						"Postnr": "7400"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ikast-Brande",
+						"KommuneKode": "756",
+						"Postnr": "7430"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Silkeborg",
+						"KommuneKode": "740",
+						"Postnr": "7441"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Silkeborg",
+						"KommuneKode": "740",
+						"Postnr": "7442"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Herning",
+						"KommuneKode": "657",
+						"Postnr": "7451"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Herning",
+						"KommuneKode": "657",
+						"Postnr": "7470"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Herning",
+						"KommuneKode": "657",
+						"Postnr": "7480"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Herning",
+						"KommuneKode": "657",
+						"Postnr": "7490"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Holstebro",
+						"KommuneKode": "661",
+						"Postnr": "7500"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Viborg",
+						"KommuneKode": "791",
+						"Postnr": "7540"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Herning",
+						"KommuneKode": "657",
+						"Postnr": "7550"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Struer",
+						"KommuneKode": "671",
+						"Postnr": "7560"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Holstebro",
+						"KommuneKode": "661",
+						"Postnr": "7570"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Holstebro",
+						"KommuneKode": "661",
+						"Postnr": "7600"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Lemvig",
+						"KommuneKode": "665",
+						"Postnr": "7620"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Lemvig",
+						"KommuneKode": "665",
+						"Postnr": "7650"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Struer",
+						"KommuneKode": "671",
+						"Postnr": "7660"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Lemvig",
+						"KommuneKode": "665",
+						"Postnr": "7673"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Lemvig",
+						"KommuneKode": "665",
+						"Postnr": "7680"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Thisted",
+						"KommuneKode": "787",
+						"Postnr": "7700"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Thisted",
+						"KommuneKode": "787",
+						"Postnr": "7730"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Thisted",
+						"KommuneKode": "787",
+						"Postnr": "7741"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Thisted",
+						"KommuneKode": "787",
+						"Postnr": "7742"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Thisted",
+						"KommuneKode": "787",
+						"Postnr": "7752"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Thisted",
+						"KommuneKode": "787",
+						"Postnr": "7755"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Thisted",
+						"KommuneKode": "787",
+						"Postnr": "7760"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Thisted",
+						"KommuneKode": "787",
+						"Postnr": "7770"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Struer",
+						"KommuneKode": "671",
+						"Postnr": "7790"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Skive",
+						"KommuneKode": "779",
+						"Postnr": "7800"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Holstebro",
+						"KommuneKode": "661",
+						"Postnr": "7830"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "783"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Skive",
+						"KommuneKode": "779",
+						"Postnr": "7840"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "784"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Viborg",
+						"KommuneKode": "791",
+						"Postnr": "7850"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "785"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Skive",
+						"KommuneKode": "779",
+						"Postnr": "7860"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Skive",
+						"KommuneKode": "779",
+						"Postnr": "7870"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Skive",
+						"KommuneKode": "779",
+						"Postnr": "7884"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Morsø",
+						"KommuneKode": "773",
+						"Postnr": "7900"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Morsø",
+						"KommuneKode": "773",
+						"Postnr": "7950"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Morsø",
+						"KommuneKode": "773",
+						"Postnr": "7960"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Morsø",
+						"KommuneKode": "773",
+						"Postnr": "7970"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Morsø",
+						"KommuneKode": "773",
+						"Postnr": "7980"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Morsø",
+						"KommuneKode": "773",
+						"Postnr": "7990"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8000"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Høje-Taastrup",
+						"KommuneKode": "169",
+						"Postnr": "800"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8200"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8210"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8220"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8230"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8240"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8245"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8250"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8260"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8270"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Odder",
+						"KommuneKode": "727",
+						"Postnr": "8300"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Samsø",
+						"KommuneKode": "741",
+						"Postnr": "8305"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8310"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8320"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8330"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Odder",
+						"KommuneKode": "727",
+						"Postnr": "8340"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Odder",
+						"KommuneKode": "727",
+						"Postnr": "8350"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8355"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8361"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8362"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Favrskov",
+						"KommuneKode": "710",
+						"Postnr": "8370"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8380"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8381"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8382"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Syddjurs",
+						"KommuneKode": "706",
+						"Postnr": "8400"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Syddjurs",
+						"KommuneKode": "706",
+						"Postnr": "8410"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Syddjurs",
+						"KommuneKode": "706",
+						"Postnr": "8420"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Norddjurs",
+						"KommuneKode": "707",
+						"Postnr": "8444"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Favrskov",
+						"KommuneKode": "710",
+						"Postnr": "8450"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8462"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Skanderborg",
+						"KommuneKode": "746",
+						"Postnr": "8464"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Favrskov",
+						"KommuneKode": "710",
+						"Postnr": "8472"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Norddjurs",
+						"KommuneKode": "707",
+						"Postnr": "8500"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8520"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8530"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8541"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Syddjurs",
+						"KommuneKode": "706",
+						"Postnr": "8543"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Syddjurs",
+						"KommuneKode": "706",
+						"Postnr": "8544"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Norddjurs",
+						"KommuneKode": "707",
+						"Postnr": "8550"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Syddjurs",
+						"KommuneKode": "706",
+						"Postnr": "8560"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Syddjurs",
+						"KommuneKode": "706",
+						"Postnr": "8570"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Norddjurs",
+						"KommuneKode": "707",
+						"Postnr": "8581"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Norddjurs",
+						"KommuneKode": "707",
+						"Postnr": "8585"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Norddjurs",
+						"KommuneKode": "707",
+						"Postnr": "8586"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Norddjurs",
+						"KommuneKode": "707",
+						"Postnr": "8592"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Silkeborg",
+						"KommuneKode": "740",
+						"Postnr": "8600"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Silkeborg",
+						"KommuneKode": "740",
+						"Postnr": "8620"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Silkeborg",
+						"KommuneKode": "740",
+						"Postnr": "8632"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Favrskov",
+						"KommuneKode": "710",
+						"Postnr": "8641"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Silkeborg",
+						"KommuneKode": "740",
+						"Postnr": "8643"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Silkeborg",
+						"KommuneKode": "740",
+						"Postnr": "8653"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Silkeborg",
+						"KommuneKode": "740",
+						"Postnr": "8654"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Skanderborg",
+						"KommuneKode": "746",
+						"Postnr": "8660"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Skanderborg",
+						"KommuneKode": "746",
+						"Postnr": "8670"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Horsens",
+						"KommuneKode": "615",
+						"Postnr": "8700"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Hedensted",
+						"KommuneKode": "766",
+						"Postnr": "8721"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Hedensted",
+						"KommuneKode": "766",
+						"Postnr": "8722"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Hedensted",
+						"KommuneKode": "766",
+						"Postnr": "8723"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Horsens",
+						"KommuneKode": "615",
+						"Postnr": "8732"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Horsens",
+						"KommuneKode": "615",
+						"Postnr": "8740"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Horsens",
+						"KommuneKode": "615",
+						"Postnr": "8751"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Horsens",
+						"KommuneKode": "615",
+						"Postnr": "8752"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Horsens",
+						"KommuneKode": "615",
+						"Postnr": "8762"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Hedensted",
+						"KommuneKode": "766",
+						"Postnr": "8763"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ikast-Brande",
+						"KommuneKode": "756",
+						"Postnr": "8765"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Ikast-Brande",
+						"KommuneKode": "756",
+						"Postnr": "8766"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Horsens",
+						"KommuneKode": "615",
+						"Postnr": "8781"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Hedensted",
+						"KommuneKode": "766",
+						"Postnr": "8783"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Horsens",
+						"KommuneKode": "615",
+						"Postnr": "8789"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Odder",
+						"KommuneKode": "727",
+						"Postnr": "8799"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Silkeborg",
+						"KommuneKode": "740",
+						"Postnr": "8800"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Viborg",
+						"KommuneKode": "791",
+						"Postnr": "8830"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Viborg",
+						"KommuneKode": "791",
+						"Postnr": "8831"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Viborg",
+						"KommuneKode": "791",
+						"Postnr": "8832"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Viborg",
+						"KommuneKode": "791",
+						"Postnr": "8840"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Favrskov",
+						"KommuneKode": "710",
+						"Postnr": "8850"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Favrskov",
+						"KommuneKode": "710",
+						"Postnr": "8860"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Randers",
+						"KommuneKode": "730",
+						"Postnr": "8870"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Silkeborg",
+						"KommuneKode": "740",
+						"Postnr": "8881"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Favrskov",
+						"KommuneKode": "710",
+						"Postnr": "8882"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Silkeborg",
+						"KommuneKode": "740",
+						"Postnr": "8883"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Randers",
+						"KommuneKode": "730",
+						"Postnr": "8900"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Randers",
+						"KommuneKode": "730",
+						"Postnr": "8920"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Randers",
+						"KommuneKode": "730",
+						"Postnr": "8930"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Randers",
+						"KommuneKode": "730",
+						"Postnr": "8940"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Norddjurs",
+						"KommuneKode": "707",
+						"Postnr": "8950"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Randers",
+						"KommuneKode": "730",
+						"Postnr": "8960"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Norddjurs",
+						"KommuneKode": "707",
+						"Postnr": "8961"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Syddjurs",
+						"KommuneKode": "706",
+						"Postnr": "8963"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Randers",
+						"KommuneKode": "730",
+						"Postnr": "8970"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Randers",
+						"KommuneKode": "730",
+						"Postnr": "8981"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Randers",
+						"KommuneKode": "730",
+						"Postnr": "8983"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Randers",
+						"KommuneKode": "730",
+						"Postnr": "8990"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Aalborg",
+						"KommuneKode": "851",
+						"Postnr": "9000"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "900"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Brøndby",
+						"KommuneKode": "153",
+						"Postnr": "913"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Brøndby",
+						"KommuneKode": "153",
+						"Postnr": "914"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "Brøndby",
+						"KommuneKode": "153",
+						"Postnr": "917"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Aalborg",
+						"KommuneKode": "851",
+						"Postnr": "9200"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Aalborg",
+						"KommuneKode": "851",
+						"Postnr": "9210"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Aalborg",
+						"KommuneKode": "851",
+						"Postnr": "9220"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Rebild",
+						"KommuneKode": "840",
+						"Postnr": "9230"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Aalborg",
+						"KommuneKode": "851",
+						"Postnr": "9240"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Aalborg",
+						"KommuneKode": "851",
+						"Postnr": "9260"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Aalborg",
+						"KommuneKode": "851",
+						"Postnr": "9270"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Aalborg",
+						"KommuneKode": "851",
+						"Postnr": "9280"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Rebild",
+						"KommuneKode": "840",
+						"Postnr": "9293"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Frederikshavn",
+						"KommuneKode": "813",
+						"Postnr": "9300"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Aalborg",
+						"KommuneKode": "851",
+						"Postnr": "9310"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Brønderslev",
+						"KommuneKode": "810",
+						"Postnr": "9320"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Frederikshavn",
+						"KommuneKode": "813",
+						"Postnr": "9330"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Brønderslev",
+						"KommuneKode": "810",
+						"Postnr": "9340"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Frederikshavn",
+						"KommuneKode": "813",
+						"Postnr": "9352"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Aalborg",
+						"KommuneKode": "851",
+						"Postnr": "9362"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Brønderslev",
+						"KommuneKode": "810",
+						"Postnr": "9370"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Aalborg",
+						"KommuneKode": "851",
+						"Postnr": "9380"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Jammerbugt",
+						"KommuneKode": "849",
+						"Postnr": "9381"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Brønderslev",
+						"KommuneKode": "810",
+						"Postnr": "9382"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Aalborg",
+						"KommuneKode": "851",
+						"Postnr": "9400"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Jammerbugt",
+						"KommuneKode": "849",
+						"Postnr": "9430"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Brønderslev",
+						"KommuneKode": "810",
+						"Postnr": "9440"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Jammerbugt",
+						"KommuneKode": "849",
+						"Postnr": "9460"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Jammerbugt",
+						"KommuneKode": "849",
+						"Postnr": "9480"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Jammerbugt",
+						"KommuneKode": "849",
+						"Postnr": "9490"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Jammerbugt",
+						"KommuneKode": "849",
+						"Postnr": "9492"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Jammerbugt",
+						"KommuneKode": "849",
+						"Postnr": "9493"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Mariagerfjord",
+						"KommuneKode": "846",
+						"Postnr": "9500"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Rebild",
+						"KommuneKode": "840",
+						"Postnr": "9510"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Rebild",
+						"KommuneKode": "840",
+						"Postnr": "9520"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Rebild",
+						"KommuneKode": "840",
+						"Postnr": "9530"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Rebild",
+						"KommuneKode": "840",
+						"Postnr": "9541"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Mariagerfjord",
+						"KommuneKode": "846",
+						"Postnr": "9550"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Mariagerfjord",
+						"KommuneKode": "846",
+						"Postnr": "9560"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Rebild",
+						"KommuneKode": "840",
+						"Postnr": "9574"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Rebild",
+						"KommuneKode": "840",
+						"Postnr": "9575"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Vesthimmerlands",
+						"KommuneKode": "820",
+						"Postnr": "9600"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "960"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Rebild",
+						"KommuneKode": "840",
+						"Postnr": "9610"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Vesthimmerlands",
+						"KommuneKode": "820",
+						"Postnr": "9620"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Viborg",
+						"KommuneKode": "791",
+						"Postnr": "9631"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Mariagerfjord",
+						"KommuneKode": "846",
+						"Postnr": "9632"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Vesthimmerlands",
+						"KommuneKode": "820",
+						"Postnr": "9640"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Jammerbugt",
+						"KommuneKode": "849",
+						"Postnr": "9670"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Vesthimmerlands",
+						"KommuneKode": "820",
+						"Postnr": "9681"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Jammerbugt",
+						"KommuneKode": "849",
+						"Postnr": "9690"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Brønderslev",
+						"KommuneKode": "810",
+						"Postnr": "9700"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Brønderslev",
+						"KommuneKode": "810",
+						"Postnr": "9740"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Brønderslev",
+						"KommuneKode": "810",
+						"Postnr": "9750"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Brønderslev",
+						"KommuneKode": "810",
+						"Postnr": "9760"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Hjørring",
+						"KommuneKode": "860",
+						"Postnr": "9800"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Hjørring",
+						"KommuneKode": "860",
+						"Postnr": "9830"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Hjørring",
+						"KommuneKode": "860",
+						"Postnr": "9850"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Frederikshavn",
+						"KommuneKode": "813",
+						"Postnr": "9870"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Frederikshavn",
+						"KommuneKode": "813",
+						"Postnr": "9881"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Frederikshavn",
+						"KommuneKode": "813",
+						"Postnr": "9900"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Læsø",
+						"KommuneKode": "825",
+						"Postnr": "9940"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Frederikshavn",
+						"KommuneKode": "813",
+						"Postnr": "9970"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Frederikshavn",
+						"KommuneKode": "813",
+						"Postnr": "9981"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Hjørring",
+						"KommuneKode": "860",
+						"Postnr": "9982"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Frederikshavn",
+						"KommuneKode": "813",
+						"Postnr": "9990"
+					},
+					{
+						"Region": "Hovedstaden",
+						"RegionsKode": "1084",
+						"Kommune": "København",
+						"KommuneKode": "101",
+						"Postnr": "999"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Køge",
+						"KommuneKode": "259",
+						"Postnr": "4600"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Aarhus",
+						"KommuneKode": "751",
+						"Postnr": "8471"
+					},
+					{
+						"Region": "Sjælland",
+						"RegionsKode": "1085",
+						"Kommune": "Køge",
+						"KommuneKode": "259",
+						"Postnr": "4690"
+					},
+					{
+						"Region": "Nordjylland",
+						"RegionsKode": "1081",
+						"Kommune": "Jammerbugt",
+						"KommuneKode": "849",
+						"Postnr": "9840"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Silkeborg",
+						"KommuneKode": "740",
+						"Postnr": "8680"
+					},
+					{
+						"Region": "Midtjylland",
+						"RegionsKode": "1082",
+						"Kommune": "Silkeborg",
+						"KommuneKode": "740",
+						"Postnr": "8610"
+					}
+				]
+		}
+	);
+
+	var myStringArray = obj.data;
+	var arrayLength = myStringArray.length;
+
+	function data(s, v, p) {
+		var allSizes = []
+		var unique = []
+		for (var i = 0; i < arrayLength; i++) {
+			//console.log(myStringArray[i]);
+			//Do something
+			if (s.toLowerCase() == "kommune") {
+
+				if (p.toLowerCase() == "postnr") {
+					if (obj.data[i].Kommune == v) {
+						allSizes.push(obj.data[i].Postnr)
+					}
+				} else if (p.toLowerCase() == "region") {
+					if (obj.data[i].Kommune == v) {
+						allSizes.push(obj.data[i].Region)
+					}
+				}
+			}
+			else if (s.toLowerCase() == "region") {
+
+				if (p.toLowerCase() == "postnr") {
+					if (obj.data[i].Region == v) {
+						allSizes.push(obj.data[i].Postnr)
+					}
+				} else if (p.toLowerCase() == "kommune") {
+					if (obj.data[i].Region == v) {
+						allSizes.push(obj.data[i].Kommune)
+					}
+				}
+			}
+			else if (s.toLowerCase() == "postnr") {
+
+				if (p.toLowerCase() == "region") {
+					if (obj.data[i].Postnr == v) {
+						allSizes.push(obj.data[i].Region)
+					}
+				} else if (p.toLowerCase() == "kommune") {
+					if (obj.data[i].Postnr == v) {
+						allSizes.push(obj.data[i].Kommune)
+					}
+				}
+			}
+		}
+		unique = [...new Set(allSizes)];
+		console.log(unique)
+	}
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,667 @@
+Position;ID;Title;Predecessor;Category;Optional Activity;IncludeOnlyIN;Activity Selection;Best case;Worse case;Item best case;Item worse case;Mandatory;Optional;Mandatory;Optional;Mandatory;Optional;Mandatory;Optional;Mandatory;Optional;Mandatory;Optional;Mandatory;Optional;User attention necessary;sorting;outline
+1;A;Start of project;;ZX01, ZX02, ZX03, ZX04, ZX05;No;0;Yes;1;4;0;1;;;;;;;;;;;;;;;No;1;2
+2;B;Task 1;A;;No;0;Yes;1;15;0;2;;;;;;;1;;;;;;;;No;1;2
+3;C;Task 2;B;;No;0;Yes;3;3;0;4;;;1;;;;;;;;;;;;No;1;2
+4;D;Task 3;B;;No;0;Yes;1;15;0;0.5;1;;;;;;;1;;;;;;;No;1;2
+5;E;Task 4;D;;No;0;Yes;1;15.5;0;4;1;;;;;;1;;;;;;;;No;1;2
+6;F;Task 5;;ZX08;No;0;External;1;4.5;0;6;2;;;;;;;;;;;;;;No;1;2
+7;A01;Task 6;B;ZX07;No;Region Hovedstaden;Yes;2;2;0;5;;1;;;;;;;;;;;1;;No;2;3
+8;A02;Task 7;A01;;No;Region Hovedstaden;Onsite;1;4.5;0;3;;;;;;;;;1;;;;1;;No;2;3
+9;A03;Task 8;C, A02;;No;Region Hovedstaden;Yes;1;4;0;2;1;;;1;;;;1;;;;;;;No;2;3
+10;A04;Task 9;C, A02;;No;Region Hovedstaden;Yes;2;4;0;3;1;;;1;;;;;;;;;;;No;2;3
+11;A05;Task 10;A03, A04;ZX07;Yes;Region Hovedstaden;No;2;15;0;5;;;;;;;;;;;;;;;No;2;3
+12;A06;Task 11;A05;ZX08;Yes;Region Hovedstaden;No;2;15;0;6;;;;;;;1;;;;;;;;No;2;3
+13;A07;Task 12;A06, E;ZX07;No;Region Hovedstaden;Yes;2;4;0;2;;;1;;;;;;;;;;;;No;2;3
+14;A08;Task 13;A07;;No;Region Hovedstaden;Yes;2.5;15.5;0;6;1;;;;;;;1;;;;;;;No;2;3
+15;B01;Task 14;B;;No;Region Nordjylland;Yes;2;15;0;6;1;;;;;1;1;;;;;;;;No;3;3
+16;B02;Task 15;B01;;Yes;Region Nordjylland;Onsite;2;4.5;0;12;;1;;;;1;;;;;;;;;No;3;3
+17;B03;Task 16;C, B02;;No;Region Nordjylland;Yes;2;4;0;4;;1;;;;;;;;;;;1;;No;3;3
+18;B04;Task 17;C, B02;ZX08;No;Region Nordjylland;Yes;2;4;0;3;;;;;;;;;;;;;1;;No;3;3
+19;B05;Task 18;B03, B04;ZX07;No;Region Nordjylland;Yes;3;4;0;0.5;;;;;1;;;;;;;;;;No;3;3
+20;B06;Task 19;B05, A08;;No;Region Nordjylland;Yes;2;4;0;34;1;;;;;;;;;;;;;;Yes;3;3
+21;C01;Task 20;B;;No;Fyn;Yes;2.5;6;0;;;;;;;1;;;;;;;;;No;4;3
+22;C02;Task 21;C01;;Yes;Fyn;Onsite;2;4.5;0;4;;;;1;1;;;;;;;;;;No;4;3
+23;C03;Task 22;C, C02;ZX07;No;Fyn;Yes;2;4;0;6;;;;;;;;;;;;;;;Yes;4;3
+24;C04;Task 23;C, C02;ZX08;No;Fyn;Yes;2;4;0;2;;;;;;;;;;;1;;;;Yes;4;3
+25;C05;Task 24;C03, C04;ZX07;No;Fyn;Yes;2;4;0;6;;;;;;;1;;;;1;;1;;Yes;4;3
+26;C06;Task 25;C05, B06;;No;Fyn;Yes;2;2;0;6;;1;;;;1;;;1;;;;1;;Yes;4;3
+27;D01;Task 26;B;;No;NetworkCraftman;Yes;1;4.5;0;12;;1;;;;1;;;;;;;;;Yes;5;3
+28;D02;Task 27;D01;;Yes;NetworkCraftman;Onsite;1;4.5;0;4;;;1;;;;;;;;;;;;Yes;5;3
+29;D03;Task 28;C, D02;;No;NetworkCraftman;Yes;1;4;0;3;;;1;;;;;;;;;;;;Yes;5;3
+30;D04;Task 29;C, D02;;No;NetworkCraftman;Yes;1;4;0;0.5;1;;;1;;1;;;;;;;;;No;5;3
+31;D05;Task 30;D03, D04, E;;No;NetworkCraftman;Yes;1;4;0;34;;;;1;;;;;;;;;1;;No;5;3
+32;E01;Task 31;B;;No;Renovering;Yes;1;4.5;0;1;;;;;;;;;;;1;;1;;No;6;3
+33;E02;Task 32;E01;;Yes;Renovering;Onsite;1;4.5;0;2;;;;;;;1;;;;1;;;;No;6;3
+34;E03;Task 33;E02;;No;Renovering;Yes;1;4.5;0;4;;1;;;;1;;;;;;;;;No;6;3
+35;F01;Task 34;B;;No;Industri;Yes;1;15;0;0.5;;1;;;;1;;;;;;;;;No;7;3
+36;F02;Task 35;F01;;Yes;Industri;Onsite;1;4.5;0;4;;;;;;;;;;;;;;;No;7;3
+37;F03;Task 36;C, F02;;No;Industri;Yes;1;4;0;6;;;;1;;;;;1;;;;;;No;7;3
+38;F04;Task 37;C, F02;;No;Industri;Yes;1;4;0;5;;;;;;;;;;;1;;;;No;7;3
+39;F05;Task 38;E, F03, F04;;No;Industri;Yes;1;4;0;3;1;;;;1;1;;;;;1;;;;No;7;3
+40;F06;Task 39;E, F03, F04;;No;Industri;Yes;1;4;0;2;;1;;;;;;;;;;;1;;No;7;3
+41;Q01;Task 40;B;ZX08;No;Kloak;Yes;1;15;0;3;;;;;;;;;1;;;;1;;Yes;8;3
+42;Q02;Task 41;Q01;ZX07;Yes;Kloak;Onsite;1;4.5;0;5;1;;;1;;;;1;;;;;;;No;8;3
+43;Q03;Task 42;C, Q02;;No;Kloak;Yes;1;4;0;1;1;;;1;;;;1;;;;;;;Yes;8;3
+44;Q04;Task 43;C, Q02;;No;Kloak;Yes;1;4;0;2;1;;;1;;;;1;;;;;;;No;8;3
+45;Q05;Task 44;E, Q03, Q04;;No;Kloak;Yes;2;4;0;4;;;;;;;;;;;;;;;No;8;3
+46;Q06;Task 45;E, Q03, Q04;ZX07;No;Kloak;Yes;2;4;0;0.5;;;;;;;1;;;;;;;;No;8;3
+47;Q07;Task 46;Q05, Q06;ZX08;Yes;Kloak;MetalSeparator;2;15;0;4;;;1;;;;;;;;;;;;No;8;3
+48;X01;Task 47;B;ZX07;No;Bygningsservice;Yes;3;15;0;6;1;;;;;;;1;;;;;1;;Yes;9;3
+49;X02;Task 48;X01;;Yes;Bygningsservice;Onsite;2;4.5;0;5;1;;;;;;1;;;;;;1;;No;9;3
+50;X03;Task 49;C, X02;;No;Bygningsservice;Yes;2.5;4;0;3;2;;;;;;;;;;;;;;Yes;9;3
+51;X04;Task 50;C, X02;;No;Bygningsservice;Yes;2;4;0;2;;1;;;;;;;;;;;;;Yes;9;3
+52;X05;Task 51;E, X03, X04;;No;Bygningsservice;Yes;2;4;0;4;;;;;;;;;1;;;;;;No;9;3
+53;X06;Task 52;E, X03, X04;;No;Bygningsservice;Yes;2;4;0;6;1;;;1;;;;1;;;;;;;No;9;3
+54;Z01;Task 53;B;;No;Privat;Yes;2;15;0;5;1;;;1;;;;;;;;;1;;Yes;10;3
+55;Z02;Task 54;Z01;;Yes;Privat;Onsite;1;4.5;0;3;;;;;;;;;;;;;1;;No;10;3
+56;Z03;Task 55;C, Z02;;No;Privat;Yes;1;4;0;2;;;;;;;1;;;;;;;;Yes;10;3
+57;Z04;Task 56;C, Z02;;No;Privat;Yes;1;4;0;3;;;1;;;;;;;1;;;;;No;10;3
+58;Z05;Task 57;E, Z03, Z04;;No;Privat;Yes;1;4;0;5;1;;;;;;;1;;;;;;;No;10;3
+59;Z06;Task 58;E, Z03, Z04;;No;Privat;Yes;1;4;0;3;1;;;;;1;1;;;;;1;;;No;10;3
+60;Y01;Task 59;B;;No;VVSService;Yes;1;15;0;5;;1;;;;1;;;;;;1;;;Yes;11;3
+61;Y02;Task 60;Y01;;Yes;VVSService;Onsite;1;4.5;0;0.5;;1;;;;;;;;;;;;;No;11;3
+62;Y03;Task 61;C, Y02;;No;VVSService;Yes;1;4;0;4;;;;;;;;;;;;;;;Yes;11;3
+63;Y04;Task 62;C, Y02;;No;VVSService;Yes;2;4;0;6;;;;;1;;;;;;1;;;;No;11;3
+64;Y05;Task 63;E, Y03, Y04;;No;VVSService;Yes;1;4;0;5;1;;;;;;;;;;;;;;Yes;11;3
+65;Y06;Task 64;E, Y03, Y04;;No;VVSService;Yes;1;4.5;0;3;;;;;;1;;;;;;;;1;No;11;3
+66;P01;Task 65;B;;No;FE;Yes;1;15;0;2;;;;1;1;;;;;1;;;;1;Yes;12;3
+67;P02;Task 66;P01;;Yes;FE;Onsite;1;4.5;0;4;;;;;;;;;;1;;;;;No;12;3
+68;P03;Task 67;C, P02;;No;FE;Yes;1;4;0;6;;;;;;;;;;;;;;;Yes;12;3
+69;P04;Task 68;C, P02;;No;FE;Yes;2;4;0;5;;;;;;;1;;;;;;1;;No;12;3
+70;P05;Task 69;P03, P04;ZX08;Yes;FE;No;1;4.5;0;3;;;;;;;;;;;;;;;Yes;12;3
+71;P06;Task 70;P05, E;ZX07, ZX10;No;FE;Yes;1;4;0;1;;;;;;;;1;;;;;;1;No;12;3
+72;P07;Task 71;P06;;No;FE;Yes;1;15;0;2;;;;1;;;;;;;;1;1;;No;12;3
+73;P08;Task 72;P07, FC07;;No;FE;Yes;3;15;0;4;;1;;;;;;;1;;;;;;No;12;3
+74;FC01;Task 73;B;;No;Brand;Yes;1;15;0;0.5;1;1;;;;;;1;;;;;;;No;13;3
+75;FC02;Task 74;FC01;;Yes;Brand;Onsite;1.5;4.5;0;4;;2;;;;;;;;;;;;;No;13;3
+76;FC03;Task 75;C, FC02;;No;Brand;Yes;1;4;0;6;1;;1;;;;;;;1;;;;1;No;13;3
+77;FC04;Task 76;C, FC02;;No;Brand;Yes;1;4;0;5;1;;;;;;;;;1;;;;1;No;13;3
+78;FC05;Task 77;C, FC02;;Yes;Brand;DualFeed;1.5;15;0;3;;1;;;1;;;;1;;1;;;;No;13;3
+79;FC06;Task 78;E, FC03, FC04, FC05;;Yes;Brand;buildingcontrolPump;1;4;0;2;1;1;;;1;;;1;;;1;;;;No;13;3
+80;FC07;Task 79;FC06;ZX07;No;Brand;Yes;1;4.15;0;3;1;;;;;;;;;;;1;;1;No;13;3
+81;ZX01;Task 80;B;;No;Indbrud;Yes;1;15;0;5;;;;;;;;;;;;1;;;Yes;14;3
+82;ZX02;Task 81;ZX01;;Yes;Indbrud;Onsite;3;4.5;0;6;;;;1;;;;;;;;;;1;No;14;3
+83;ZX03;Task 82;C, ZX02;ZX08;No;Indbrud;Yes;1;4;0;2;1;1;;;;;;;;;;;;;Yes;14;3
+84;ZX04;Task 83;C, ZX02;ZX07;No;Indbrud;Yes;1.2;4;0;6;1;1;;;;;1;;;;;;;;No;14;3
+85;ZX05;Task 84;E, ZX03, ZX04;;No;Indbrud;Yes;1;4;0;6;1;;1;;;;1;;1;;;;;;No;14;3
+86;ZX06;Task 85;ZX05;;No;Indbrud;Yes;1;4;0;12;1;;1;;;;;;;;;;;;Yes;14;3
+87;HRX01;Task 86;B;;No;HR;Yes;1;4.5;0;4;;;;;;;;;;;;1;;;No;15;3
+88;HRX02;Task 87;HRX01;ZX07;Yes;HR;Onsite;1;4.5;0;3;;;;;;1;;1;;;;1;;;Yes;15;3
+89;HRX03;Task 88;C, HRX02;ZX08;No;HR;Yes;3;4;0;0.5;1;1;;;;;;1;;;;;;;Yes;15;3
+90;HRX04;Task 89;C, HRX02;ZX07;No;HR;Yes;1.5;4;0;34;1;;;;;;1;;;;;;;;No;15;3
+91;HRX05;Task 90;HRX03, HRX04;;Yes;HR;No;1;15;0;0;;;;;1;1;;;;;1;;;;Yes;15;3
+92;HRX06;Task 91;HRX05;ZX08;Yes;HR;No;1;15;0;4;;;;;;;;;;;;;;;Yes;15;3
+93;HRX07;Task 92;HRX06, E;;No;HR;Yes;1.5;4;0;6;1;;;;;;;;;;;1;;;Yes;15;3
+94;HRX08;Task 93;HRX07;;No;HR;Yes;3;4.25;0;2;1;;;;;;;;;1;1;;;;Yes;15;3
+95;QNO01;Task 94;B;;No;Eletrikernetwork;Yes;1;4.5;0;6;;;1;;;;1;;;;;;;;Yes;16;3
+96;QNO02;Task 95;QNO01;;Yes;Eletrikernetwork;Onsite;1;4.5;0;6;;;1;;;;1;;;;;;;;No;16;3
+97;QNO03;Task 96;C, QNO02;;No;Eletrikernetwork;Yes;1;4;0;12;1;;;1;;;;;;;;;;;Yes;16;3
+98;QNO04;Task 97;C, QNO02;;No;Eletrikernetwork;Yes;3;4;0;4;1;;;1;;;;1;;;;1;;;No;16;3
+99;QNO05;Task 98;E, QNO03, QNO04;;No;Eletrikernetwork;Yes;12;4;0;3;1;1;;;1;;1;1;;;;1;;;No;16;3
+100;OO01;Task 99;B;;No;Skadeservice;Yes;1;4.5;0;0.5;;;;;1;;;;1;;;;;;No;17;3
+101;OO02;Task 100;OO01;;Yes;Skadeservice;Onsite;1;4.5;0;34;;;;;;;1;;1;;;;;;No;17;3
+102;OO03;Task 101;C, OO02;;No;Skadeservice;Yes;1;4;0;1;1;;;;1;;;;;1;;1;;;Yes;17;3
+103;OO04;Task 102;C, OO02;VD03;No;Skadeservice;Yes;2;4;0;2;1;1;;;;;;;;1;;;1;;No;17;3
+104;OO05;Task 103;OO03, OO04;VD04;Yes;Skadeservice;No;1;4.5;0;4;1;;;;;;;;;;;1;1;;Yes;17;3
+105;OO06;Task 104;E, OO05;VD05;No;Skadeservice;Yes;1;4;0;0.5;1;;;1;;;;1;;;;;;;No;17;3
+106;OO07;Task 105;OO06;VD06;No;Skadeservice;Yes;1;15;0;4;1;;;1;;;;;;;;;;;Yes;17;3
+107;QWX01;Task 106;B;VD07;No;EX;Yes;1;3;0;6;1;;;;;;;;;;;;;;No;18;3
+108;QWX02;Task 107;C, QWX01;;No;EX;Yes;1;4;0;5;1;;;;;;1;;;;;;;;No;18;3
+109;XQC01;Task 108;B;;No;TB;Yes;1;4.5;0;3;;;1;;;;;;;;;;;;No;19;3
+110;XQC02;Task 109;C, XQC01;;No;TB;Yes;1;15;0;2;;;;;;;;1;;;;;;;No;19;3
+111;AVA01;Task 110;B;;No;SpecialTBpport;Yes;3;4.5;0;3;;;;;;1;1;;;;;;;;No;20;3
+112;AVA02;Task 111;C, AVA01;;No;SpecialTBpport;Yes;1;15;0;5;;;1;;;;;;;;;;;;No;20;3
+113;ASVS01;Task 112;B;;No;Nedrivning;Yes;3;4.3;0;1;;1;;;;;;;;;;;1;;Yes;21;3
+114;ASVS02;Task 113;ASVS01;;No;Nedrivning;Yes;1;3;0;2;;;;;1;;;;1;;;;1;;No;21;3
+115;SSG01;Task 114;B;;No;IC;Yes;7;17;0;4;;;;;1;;;1;;;1;;;;No;22;3
+116;SSG02;Task 115;SSG01;;No;IC;Yes;1;5;0;0.5;;;;;;;;1;;;;;;;Yes;22;3
+117;PSQL01;Task 116;B;;No;AS;Yes;5;8;0;4;;;;;;;;;;;;;;;No;23;3
+118;PSQL02;Task 117;C, PSQL01;;No;AS;Yes;5;8;0;6;1;;;1;;;;;;;;;;;No;23;3
+119;PSQL03;Task 118;C, PSQL01;;No;AS;Yes;1;8;0;0.5;1;;;;;;;1;;;;;;;No;23;3
+120;PSQL04;Task 119;PSQL03, PSQL02;ZX07;Yes;AS;No;1;15;0;4;;;;;;;1;;;;;;;;No;23;3
+121;PSQL05;Task 120;PSQL04;VD03;Yes;AS;No;1;15;0;6;;1;1;;;;1;;;;;;1;;No;23;3
+122;PSQL06;Task 121;PSQL05, E;VD04;No;AS;Yes;1;4;0;5;1;;1;;;;;;1;;;;1;;No;23;3
+123;PSQL07;Task 122;PSQL06;VD05;No;AS;Yes;1.2;4.2;0;3;1;;;;;;;1;;;;;;;No;23;3
+124;EQCA02;Task 123;F, A08, B06, C06, E03, Q07, Y05, Y06, FC07, ZX06, HRX08, OO07, QWX02, XQC02, AVA02, ASVS02, SSG01, PSQL07;VD06;No;0;Yes;1;4;0;2;;;;;;1;;1;;;;;;;No;24;2
+125;PST01;Task 124;A07;VD07;No;Region Hovedstaden;Yes;1;2;0;4;1;;;;;;;;;;;;;;No;25;3
+126;PST02;Task 125;B04;;No;Region Nordjylland;Yes;1;4.5;0;6;1;;;;;;1;;;;1;;;;No;25;3
+127;PST03;Task 126;C04, QNO05, QWX02;;No;Fyn;Yes;1;2;0;5;1;1;;;1;1;;;;;;;1;;Yes;25;3
+128;PST04;Task 127;D05;;No;NetworkCraftman;Yes;1;15.5;0;3;1;;;;;;;1;;;;;;;Yes;25;3
+129;PST05;Task 128;F05, F06, Q07, HRX07, X05, X06, E03;;No;Industri;Yes;1.5;15.5;0;1;1;;;;;;;;;;;;;;Yes;25;3
+130;PST06;Task 129;Z05, Z06;;No;Privat;Yes;1;4.5;0;2;1;;;;;;;;;1;;;;;Yes;25;3
+131;PST07;Task 130;Y05, Y06;;No;VVSService;Yes;1;4.5;0;4;1;;1;;;;1;;;1;;;;;No;25;3
+132;PST08;Task 131;P08, FC06, ZX03, ZX04;;No;FE;Yes;1.5;2.5;0;0.5;1;;1;;;;1;;;;;;;;No;25;3
+133;PST09;Task 132;OO06;;Yes;Skadeservice;Yes;1;15;0;0.5;1;;;1;;;;;;;;;1;;Yes;25;3
+134;PST10;Task 133;XQC02;;No;TB;Yes;1;4.5;0;0.5;1;;;1;;;;;1;;;;1;;No;25;3
+135;PST11;Task 134;AVA02;;No;SpecialTBpport;Yes;1;4.5;0;0.5;1;;;;1;;1;;;;;;;;No;25;3
+136;PST12;Task 135;ASVS02;;No;Nedrivning;Yes;1;4.5;0;4;1;;;;1;;;;;;;1;;;No;25;3
+137;PST13;Task 136;SSG02;;No;IC;Yes;1;4.5;0;6;1;;;;;;1;1;;;;1;;;No;25;3
+138;PST14;Task 137;PSQL02, PSQL03;;No;AS;Yes;1;4.5;0;5;1;;;;1;;;1;;;;;;;No;25;3
+139;nTn01;Task 138;EQCA02, PST01;ZX14;No;Region Hovedstaden;Yes;2;3;0;3;1;;1;;;1;;;;;;;;;No;26;3
+140;nTn02;Task 139;nTn01;;Yes;Region Hovedstaden;Yes;1;4.5;0;2;1;;;;;1;;;;;1;;;;No;26;3
+141;nTn03;Task 140;nTn02;ZX15;No;Region Hovedstaden;CIPKitchen;1;2;0;4;1;;;;;;;;;;;;1;;Yes;26;3
+142;TnT01;Task 141;EQCA02, PST02, nTn02;;No;Privat;Yes;5;6;0;6;1;;;;;;;;;;;1;1;;Yes;27;3
+143;TnT02;Task 142;TnT01;;No;0;Yes;2;2;0;5;1;;;1;;;;;;1;1;;;;No;27;3
+144;TnT03;Task 143;TnT02;;No;0;Yes;2;2;0;3;1;;;;;;;;;;;;;;No;27;3
+145;TnT04;Task 144;TnT03, WQEC01, GBPO02, PS08, PS09, PS10, nTn03;;No;0;Yes;2;2;0;1;;;;;;;;;;;;;;;No;27;3
+146;WyL01;Task 145;EQCA02, PST02, nTn03;ZX16;No;FE;CIPKitchen;2;3;0;2;;;1;;;1;;;;;;;;;Yes;28;3
+147;WyL02;Task 146;EQCA02, PST02, nTn03;;No;FE;CIPKitchen;2;2;0;4;;;1;;;;;1;;;;1;1;;No;28;3
+148;PS01;Task 147;;;No;0;Yes;1;4.5;0;0.5;;;;;;;;1;;;;1;;;Yes;29;3
+149;PS02;Task 148;;ZX13;No;0;Yes;1;2;0;4;;;;;;1;;;1;;;;;;Yes;29;3
+150;PS03;Task 149;PS01, PS02, PST04, PST05, PST06, PST07, EQCA02;;No;0;Yes;2;5;0;6;;1;;;;;;;1;;;;;;Yes;29;3
+151;PS04;Task 150;PS03;;No;NetworkCraftman;Yes;2;4;0;1;;;;;;;;;;1;;1;;;Yes;29;3
+152;PS05;Task 151;WQEC01, PS03, EQCA02;ZX17;No;0;Yes;1;4;0;2;;;;;1;;;;;1;;;;;No;29;3
+153;PS06;Task 152;PS05, GBPO02, PST08, WyL01;ZX18;No;0;Yes;2;3;0;4;1;;;;1;;;;;;;1;;;Yes;29;3
+154;PS07;Task 153;PS06, PST14, PS04;;No;0;Yes;1;2;0;0.5;1;;;;;;;;;;;;;;Yes;29;3
+155;PS08;Task 154;PS07;ZX11;No;0;Yes;1;15;0;4;;;;;;;;;;;;;;;No;29;3
+156;PS09;Task 155;PS07;;Yes;0;Yes;1;4.5;0;6;;;;1;;;;;;;;;;;Yes;29;3
+157;PS10;Task 156;PS07;;No;0;Yes;1;2;0;5;;;;;;;;1;;;;;;;Yes;29;3
+158;PS11;Task 157;TnT03, WQEC01, GBPO02, PS08, PS09, PS10, nTn03;;No;0;Yes;2;2;0;3;;;;;1;;1;;;;;;;;No;29;3
+159;PS12;Task 158;PS07;;Yes;FE;DualFeed;2;4;0;1;;;1;1;;;1;;;;;;;;No;29;3
+160;PS13;Task 159;PS07;;No;0;Yes;1;15;0;2;;;;;;;;1;;;;;;;No;29;3
+161;PS14;Task 160;PS11;;No;0;Yes;2.5;4.15;0;4;;;;;;;;;;;;;;;No;29;3
+162;GBPO01;Task 161;PS03, EQCA02, WQEC01;ZX12;Yes;0;Yes;4;5;0;0.5;;;;;;1;;1;;;;;;;Yes;30;3
+163;GBPO02;Task 162;GBPO01;;No;0;Yes;1;3;0;0.5;1;;;;1;;;1;;;;;;;Yes;30;3
+164;WQEC01;Task 163;EQCA02, PST03;;No;Fyn;Yes;2;7;0;0.5;1;;;;1;;1;;;;;;;;No;31;3
+165;WQEC02;Task 164;WQEC01, PS03;VD03;No;SpecialTBpport;Yes;5;5;0;0.5;;1;;;;1;;;;;;;;;No;31;3
+166;WQEC03;Task 165;WQEC01, PS03;VD04;No;SpecialTBpport;Yes;3;3;0;4;;1;;;;;;;;;;;;;No;31;3
+167;WQEC04;Task 166;WQEC01, PS03;VD05;No;TB;Yes;1;4;0;6;;;1;;1;;;1;;;;;;;No;31;3
+168;WQEC05;Task 167;WQEC01, PS03;VD06;No;TB;Yes;2;2;0;3;;;1;;;;;;;;;;;;No;31;3
+169;WQEC06;Task 168;PST13;VD07;No;IC;Yes;11;18;0;1;;;;;1;;1;;;1;;;;;No;31;3
+170;OQLE01;Task 169;EQCA02, PST09;;No;Skadeservice;Yes;1;15;0;2;;;1;;;;1;;;1;;;;;No;32;3
+171;OQLE02;Task 170;OQLE01;;No;Skadeservice;Yes;1;15;0;4;1;;;1;;;;;;;;;;;No;32;3
+172;EQCA03;Task 171;OQLE02, WQEC03, WQEC02, WQEC04, WQEC05, PS14, PS11, WyL02, TnT04, PST10, PST11, PST12, WQEC06;;No;0;Yes;1;4;0;0.5;;;;1;;;;;;;;;;;No;33;3
+173;WWW01;Task 172;EQCA03;;No;Skadeservice;Yes;1;15;0;0.5;1;;;;1;;1;;1;;;;;;No;34;3
+174;WWW02;Task 173;WWW01;;No;Skadeservice;Yes;1;4.5;0;0.5;1;;;;1;;;;;;;;;;No;34;3
+175;WWW03;Task 174;WWW02;;No;Skadeservice;Yes;1;4.5;0;2;1;;;;;;1;;;;;1;;;No;34;3
+176;WWW04;Task 175;WWW03;;No;Skadeservice;Yes;1;15;0;6;1;;;;;;;1;;;;1;;;No;34;3
+177;WWW05;Task 176;WWW04;ZX08;No;Skadeservice;Yes;1;4.5;0;6;;;;;;;;;;;;;;;No;34;3
+178;WWW06;Task 177;WWW05;ZX07;No;Skadeservice;Yes;1;4.5;0;12;;;1;;;;;;;;;;;;No;34;3
+179;WWW07;Task 178;WWW06;;No;NetworkCraftman;Yes;1;15;0;4;;;1;;;1;;;;;1;;;;No;34;3
+180;WWW08;Task 179;WWW06;;No;NetworkCraftman;Yes;1;4.5;0;3;;;;;;1;;;;;;;;;No;34;3
+181;WWW09;Task 180;WWW06;;No;NetworkCraftman;Yes;1;4;0;0.5;;;;;;;;;;;;1;;;No;34;3
+182;WWW10;Task 181;WWW07, WWW08, WWW09;ZX07;No;NetworkCraftman;No;1;4;0;34;;1;;;;;;;;1;1;;;;Yes;34;3
+183;WWW11;Task 182;WWW07, WWW08, WWW09;ZX08;No;NetworkCraftman;No;1;4.5;0;1;;;;;;;;;;;;;;;Yes;34;3
+184;WWW12;Task 183;WWW07, WWW08, WWW09;ZX07;No;Renovering;No;1;4;0;2;;;;;1;;;;;;;;;;No;34;3
+185;WWW13;Task 184;WWW07, WWW08, WWW09, PS12;;Yes;Renovering;No;2;154;0;4;1;;;;1;;;1;;;;;;;No;34;3
+186;WWW14;Task 185;WWW07, WWW08, WWW09, PS13;;Yes;Renovering;No;1;15.5;0;0.5;1;;;;;;;1;;;;1;;;No;34;3
+187;WWW15;Task 186;WWW10, WWW11, WWW12, WWW13, WWW14;;Yes;Industri;No;3;3;0;4;;;;;;;;;;;;1;;;No;34;3
+188;PPQW01;Task 187;WWW15;;No;Industri;Yes;1;4;0;6;;;;1;;;;;1;;;;;;No;35;3
+189;PPQW02;Task 188;PPQW01;;Yes;Industri;Yes;3;3;0;5;;;;;;;1;;1;;;;;;No;35;3
+190;NPWQ01;Task 189;PPQW02;;No;Industri;Yes;1;15;0;3;;;;;1;;;;;1;;1;;;No;36;3
+191;NPWQ02;Task 190;PPQW02;;No;Industri;Yes;1;4.5;0;2;;;1;1;;;;1;;1;;;;;No;36;3
+192;NPWQ03;Task 191;PPQW02;;No;Industri;Yes;1;4;0;3;;;;;;1;1;;;;;1;;;No;36;3
+193;NPWQ04;Task 192;NPWQ01, NPWQ02, NPWQ03;;No;Kloak;No;1;4;0;5;;;;;;;;;;;;;;;No;36;3
+194;NPWQ05;Task 193;NPWQ01, NPWQ02, NPWQ03;;No;Kloak;No;1;4.5;0;1;;;;;;;;;;;;;;;No;36;3
+195;NPWQ06;Task 194;NPWQ01, NPWQ02, NPWQ03;;No;Kloak;No;5;4;0;2;1;;;;1;;;;;;;;;;No;36;3
+196;NPWQ07;Task 195;NPWQ01, NPWQ02, NPWQ03, PS12;;Yes;FE;No;2;154;0;4;1;;;;1;;;1;;;;;;;No;36;3
+197;NPWQ08;Task 196;NPWQ01, NPWQ02, NPWQ03, PS13;;Yes;Indbrud;No;2;15.5;0;0.5;;1;;;;;;1;;;;;;;No;36;3
+198;NPWQ09;Task 197;NPWQ04, NPWQ05, NPWQ06, NPWQ07, NPWQ08;;Yes;Indbrud;No;2;3;0;4;;1;;;;;;;;;;;;;No;36;3
+199;FPCP01;Task 198;NPWQ09;;No;Indbrud;Yes;2;4;0;6;;;1;;1;;;;;;1;;;;No;37;3
+200;FPCP02;Task 199;FPCP01;;Yes;Indbrud;Yes;2;3;0;5;;;1;;;1;;1;;;1;;;;No;37;3
+201;PCPAQ01;Task 200;FPCP02;;No;Indbrud;Yes;1;5;0;3;;;;;1;1;;;1;;;;;;Yes;38;3
+202;PCPAQ02;Task 201;PCPAQ01;;No;Indbrud;Yes;1;35;0;2;1;;;;;;;1;;;1;;;;Yes;38;3
+203;MANFACQ36;Task 662;OQLE02, WQEC03, WQEC02, WQEC04, WQEC05, PS14, PS11, WyL02, TnT04, PST10, PST11, PST12, WQEC06;;No;SpecialTBpport;No;2;15;0;4;;;;;1;;;;;;;;;;Yes;33;3
+204;MANFACQ37;Task 663;EQCA03;;Yes;SpecialTBpport;No;2;4.5;0;6;1;;1;;;;;;;;;;;;No;34;3
+205;PCFAG01;Task 202;nTn01;;Yes;FE;No;1;15;0;5;1;;;;;;;;;;;;;;Yes;36;3
+206;PCFAG02;Task 203;nTn02;;Yes;Indbrud;No;2;4.5;0;3;1;;;;1;;;;;;;;;;Yes;36;3
+207;PCFAG03;Task 204;nTn03;;Yes;SpecialTBpport;No;1;4;0;2;1;;;;1;;;;;;;;;;No;36;3
+208;PCFAG04;Task 205;TnT01;;Yes;SpecialTBpport;No;1;4;0;3;1;;;;;;;;;;;;;;Yes;36;3
+209;PCFAG05;Task 206;TnT02;;Yes;FE;No;1;4;0;5;1;;;;;;;;;;;;;;Yes;36;3
+210;PCFAG06;Task 207;TnT03;VD01;Yes;Indbrud;No;1;4;0;3;1;;;1;;;;;;;;;;;No;36;3
+211;PCFAG07;Task 208;TnT04;VD02;Yes;SpecialTBpport;No;1;15;0;5;;;;;;;;;1;;;;;;Yes;36;3
+212;PCFAG08;Task 209;WyL01;VD03;Yes;SpecialTBpport;No;1;4.5;0;0.5;;;;;;;1;;1;;;;;;Yes;36;3
+213;PCFAG09;Task 210;WyL02;VD04;Yes;FE;No;5;4;0;4;;;1;;;;1;;;;1;;;;No;37;3
+214;PCFAG10;Task 211;PS01;VD05;Yes;Indbrud;No;2;4;0;6;;;1;;;;;;;;1;;;;Yes;37;3
+215;PCFAG11;Task 212;PS02;VD06;Yes;SpecialTBpport;No;2;4;0;5;;;;;;;;1;;;;;;;Yes;38;3
+216;PCFAG12;Task 213;PS03;VD07;Yes;SpecialTBpport;No;2;15;0;3;;1;;;;1;;1;;;1;;;;No;38;3
+217;PCFAG13;Task 214;PS04;VD08;Yes;FE;No;2;4.5;0;2;;;;;;;;;1;;;;;;Yes;38;3
+218;PCFAG14;Task 215;PS05;;Yes;Indbrud;No;2;4;0;4;;;;;;;1;;;;;;;;Yes;39;2
+219;UUGS01;Task 216;PS06;;Yes;SpecialTBpport;No;1;4;0;6;1;;;;1;1;;;;;;;;;No;36;3
+220;UUGS02;Task 217;PS07;;Yes;SpecialTBpport;No;1;4;0;5;1;;;;;;;;;;;;;;No;36;3
+221;UUGS03;Task 218;PS08;;Yes;FE;No;2;4;0;3;;;;;;;;1;;;;;;;No;36;3
+222;UUGS04;Task 219;PS09;;Yes;Indbrud;No;2;15;0;1;;1;;;;;;;1;;;;;;No;36;3
+223;UUGS05;Task 220;PS10;ZX08;Yes;SpecialTBpport;No;1;4.5;0;2;;;;;;;1;;1;;;;;;No;36;3
+224;UUGS06;Task 221;PS11;ZX07;Yes;SpecialTBpport;No;2;4;0;4;;;;1;;;1;;;;;;;;No;36;3
+225;UUGS07;Task 222;PS12;;Yes;FE;No;1;4;0;0.5;;;;1;;;;;;;;;;;No;36;3
+226;UUGS08;Task 223;PS13;;Yes;Indbrud;No;1;4;0;4;;;;;;;;1;1;;;;;;No;36;3
+227;FPAC01;Task 224;PS14;;Yes;SpecialTBpport;No;1;4.15;0;6;;;;;;;1;1;;;1;;;;No;37;3
+228;FPAC02;Task 225;GBPO01;ZX07;Yes;SpecialTBpport;No;4;5;0;5;;;1;;;;;;1;;1;;;;No;37;3
+229;FPAC03;Task 226;PCFAG01;ZX08;Yes;FE;No;1;3;0;3;1;;;;;;1;;1;;;;;;No;38;3
+230;FPAC04;Task 227;PCFAG02;ZX07;Yes;Indbrud;No;2;7;0;2;1;;;;;1;;1;;;1;;;;No;38;3
+231;FPAC05;Task 228;PCFAG03;;Yes;SpecialTBpport;No;5;5;0;3;1;;;;;1;;;1;;;;;;No;38;3
+232;FPAC06;Task 229;PCFAG04;;Yes;SpecialTBpport;No;3;3;0;5;;;;;;;;1;;;;;;;No;39;2
+233;FPAC07;Task 230;PCFAG05;;Yes;FE;No;1;4;0;6;;;1;;;;1;;;;;;;;No;29;3
+234;FPAC08;Task 231;PCFAG06;;Yes;Indbrud;No;2;2;0;2;;;1;;;;1;;1;;;;;;No;29;3
+235;FPAC09;Task 232;PCFAG07;;Yes;IND;No;11;154;0;6;;;;;;;;;;;;;;;No;29;3
+236;PPFCQ01;Task 233;PCFAG08;;Yes;IND;No;1;15;0;6;;;;;;1;;1;;;1;;;;No;30;3
+237;PPFCQ02;Task 234;PCFAG09;VD03;Yes;IND;No;1;15;0;12;;1;;;;;1;1;;;1;;;;No;30;3
+238;PPFCQ03;Task 235;PCFAG10;VD04;Yes;IND;No;1;4;0;4;;;;;;;;;;;;;;;No;31;3
+239;PPFCQ04;Task 236;PCFAG11;;Yes;IND;No;1;15;0;3;;;;;1;;1;;;;;;;;No;31;3
+240;PPFCQ05;Task 237;PCFAG12;;Yes;SpecialTBpport;No;1;4.5;0;0.5;1;;;;1;;;;;1;;;;;No;31;3
+241;FFFP01;Task 238;PCFAG13;ZX08;Yes;FE;No;1;4.5;0;34;1;;;;;1;;;;;;;;;No;31;3
+242;FFFP02;Task 239;PCFAG14;ZX07;Yes;Indbrud;No;1;15;0;0;;;;;;1;;;;;;;1;;No;31;3
+243;FFFP03;Task 240;WWW06;;Yes;SpecialTBpport;No;1;4.5;0;4;;;;1;;;1;;1;;;;1;;No;31;3
+244;FFFP04;Task 241;WWW07;;Yes;SpecialTBpport;No;1;4.5;0;6;;;;;;;;;1;;;;;;No;32;3
+245;FFFP05;Task 242;WWW08;;Yes;IND;No;5;15;0;2;;;;;1;1;;;;;;;;;Yes;32;3
+246;FFFP06;Task 243;WWW09;ZX07;Yes;IND;No;2;4.5;0;6;;;1;1;;;;;;;;1;;;Yes;33;3
+247;FFFP07;Task 244;WWW10;ZX08;Yes;IND;No;2;4;0;6;;;;;;1;;;;;;;;;No;34;3
+248;FFFP08;Task 245;WWW11;ZX07;Yes;IND;No;2;4;0;12;;;;1;;;;;;;;;1;;No;34;3
+249;FFFP09;Task 246;WWW12;;Yes;IND;No;2;4.5;0;4;;;;;;;;1;;;1;1;;;No;34;3
+250;FFFP10;Task 247;WWW13;;Yes;Indbrud;No;2;4;0;3;1;;;;;1;;;;;;;;;No;34;3
+251;FFFP11;Task 248;WWW14;;Yes;SpecialTBpport;No;1;154;0;0.5;1;;;;;;;;;;;;;;No;34;3
+252;FFFP12;Task 249;WWW15;;Yes;SpecialTBpport;No;1;15.5;0;34;;1;;;;;1;;;;;;;;No;34;3
+253;FFFP13;Task 250;PPQW01;;Yes;IND;No;2;3;0;1;;;;;;;1;;1;;;;1;;No;29;3
+254;FFFP14;Task 251;PPQW02;;Yes;IND;No;2;4;0;2;;;;1;;;;;1;;;;1;;No;29;3
+255;FFFP15;Task 252;NPWQ01;ZX08;Yes;IND;No;1;3;0;4;;;;1;;;;;;1;;;;;No;29;3
+256;FFFP16;Task 253;NPWQ02;ZX07;Yes;IND;No;2;15;0;0.5;;;;;;;;;;1;;;;;No;30;3
+257;FFFP17;Task 254;NPWQ03;;Yes;IND;No;1;4.5;0;4;;;;;;;;;;;1;;1;;No;30;3
+258;FFFP18;Task 255;nTn01;;Yes;IND;No;1;4;0;6;;;1;;;;;;;;1;;;;No;31;3
+259;FFFP19;Task 256;nTn02;;Yes;IND;No;1;4;0;5;1;;;;;1;;;;;;;1;;No;31;3
+260;FFFP20;Task 257;nTn03;;Yes;IND;No;1;4.5;0;3;1;;;;;1;;;;;;;;;No;31;3
+261;FFFP21;Task 258;TnT01;;Yes;FE;No;1;4;0;2;1;1;;;;;;;;;;;;;No;31;3
+262;FFFP22;Task 259;TnT02;;Yes;Indbrud;No;1;4;0;3;1;1;;;;;1;;;;1;;;;No;31;3
+263;FFFP23;Task 260;TnT03;VD03;Yes;SpecialTBpport;No;1;4;0;5;;;;;;;1;;;;1;;;;No;31;3
+264;FFFP24;Task 261;TnT04;VD04;Yes;IND;No;1;15;0;1;;;;;1;;;1;;;;;;;No;32;3
+265;FFFP25;Task 262;WyL01;VD05;Yes;IND;No;1;4.5;0;2;1;;;;;;;1;;;;;;;No;32;3
+266;FFFP26;Task 263;WyL02;;Yes;IND;No;5;4;0;4;;;;;;;;;1;;1;;;;No;33;3
+267;FFFP27;Task 264;PS01;;Yes;IND;No;2;4;0;0.5;1;;;1;1;;;;1;;;;;;No;34;3
+268;FFFP28;Task 265;PS02;;Yes;IND;No;2;4;0;4;1;;;;;;;;;;1;;;;No;34;3
+269;FFFP29;Task 266;PS03;;Yes;IND;No;2;4;0;6;1;;;;;1;;;;1;;;;;No;34;3
+270;FFFP30;Task 267;PS04;;Yes;IND;No;2;15;0;0.5;1;;;;;1;;;;1;;;;;No;34;3
+271;FFFP31;Task 268;PS05;;Yes;IND;No;2;4.5;0;4;1;1;;;;;1;;;;;;;;No;34;3
+272;FFFP32;Task 269;PS06;;Yes;IND;No;1;4;0;6;1;1;;;;;1;;;;;;;;No;34;3
+273;FFFP33;Task 270;PS07;;Yes;IND;No;1;4;0;5;1;;1;;;;;1;;1;;;;;No;29;3
+274;FFFP34;Task 271;PS08;;Yes;IND;No;2;4;0;3;1;;1;;;;;1;;;;;;;No;29;3
+275;FFFP35;Task 272;PS09;;Yes;PRI;No;2;4.15;0;2;1;;;1;;;;;;1;;;;;No;29;3
+276;FFFP36;Task 273;PS10;;Yes;PRI;No;1;5;0;4;1;;;1;;;;1;;;;;;;No;30;3
+277;FFFP37;Task 274;PS11;;Yes;PRI;No;2;3;0;6;;;;;;1;;1;;;;;;;No;30;3
+278;FFFP38;Task 275;PS12;;Yes;IND;No;1;7;0;5;;;1;;;1;;;;;;;;;No;31;3
+279;FFFP39;Task 276;PS13;;Yes;IND;No;1;4.5;0;3;1;;1;;;;;;;;;;;;No;31;3
+280;FFFP40;Task 277;PS14;;Yes;IND;No;1;15;0;1;1;;1;;;;;;;;;;;;No;31;3
+281;FFFP41;Task 278;GBPO01;;Yes;IND;No;1;4.5;0;2;1;;1;;;;;;;;;;;;No;31;3
+282;FFFP42;Task 279;HRX07;;Yes;IND;No;1;15;0;4;1;;1;;;;;;;;;;;;No;31;3
+283;FFFP43;Task 280;HRX08;;Yes;IND;No;3;7;0;0.5;;;1;;;;;;;;;;;;No;31;3
+284;FFFP44;Task 281;QNO01;;Yes;IND;No;1;3;0;0.5;;;1;;;;;;;;;;;;No;32;3
+285;FFFP45;Task 282;QNO02;;Yes;PRI;No;3;9;0;0.5;1;;1;;;;;;;;;;;;No;32;3
+286;FFFP46;Task 283;QNO03;;Yes;PRI;No;1;5;0;0.5;;;;;;;;;;;;;;;No;33;3
+287;FFFP47;Task 284;QNO04;;Yes;PRI;No;2;9;0;4;1;;1;;;;;;;;;;;;No;34;3
+288;FFFP48;Task 285;QNO05;;Yes;IND;No;1;4;0;6;1;;;1;;;;;;;;;;;No;34;3
+289;FFFP49;Task 286;OO01;;Yes;IND;No;1;4;0;5;1;;;;;;;;;;;;;;No;34;3
+290;FFFP50;Task 287;OO02;;Yes;IND;No;1;15;0;3;1;;1;;;;;;;;;;;;No;34;3
+291;INDUSTRI01;Task 288;OO03;;Yes;IND;No;1;15;0;2;1;;;;;;;;;;;;;;No;34;3
+292;INDUSTRI02;Task 289;OO04;;Yes;IND;No;1;4;0;4;;;;;;;;;;;;;;;No;34;3
+293;INDUSTRI03;Task 290;OO05;;Yes;IND;No;2;15;0;6;;;1;;;;1;;;;;;;;No;31;3
+294;INDUSTRI04;Task 291;OO06;;Yes;PRI;No;2;4.5;0;5;;;1;;;;1;;;;;;;;No;32;3
+295;INDUSTRI05;Task 292;OO07;;Yes;PRI;No;1;4;0;3;;;;;;;1;;;;;;;;No;32;3
+296;INDUSTRI06;Task 293;QWX01;;Yes;PRI;No;2;4;0;1;;;;;;;1;;;1;;;;;No;33;3
+297;INDUSTRI07;Task 294;QWX02;;Yes;IND;No;1;4;0;2;;1;;;;;1;;;1;;;;;No;34;3
+298;INDUSTRI08;Task 295;XQC01;;Yes;IND;No;1;4.5;0;4;;;;;;;;;;;;;;;No;34;3
+299;INDUSTRI09;Task 296;XQC02;;Yes;IND;No;1;15;0;0.5;;;;;1;;;;1;;;;;;No;34;3
+300;INDUSTRI10;Task 297;AVA01;;Yes;IND;No;1;4.5;0;4;1;;;;1;;1;;1;;;;;;No;34;3
+301;INDUSTRI11;Task 298;AVA02;;Yes;IND;No;1;4;0;6;1;;;;;;1;;1;;;;;;No;34;3
+302;INDUSTRI12;Task 299;ASVS01;;Yes;PRI;No;3;4;0;6;;;;;;;1;;1;;;;;;No;34;3
+303;INDUSTRI13;Task 300;ASVS02;;Yes;PRI;No;1;4.5;0;5;;;;1;;;1;;1;;;;;;No;29;3
+304;INDUSTRI14;Task 301;SSG01;;Yes;PRI;No;3;4;0;3;;1;;;1;;;;1;;;;;;No;29;3
+305;INDUSTRI15;Task 302;SSG02;;Yes;IND;No;1;15;0;1;;1;;;1;;;;1;;;;;;No;29;3
+306;INDUSTRI16;Task 303;PSQL01;;Yes;IND;No;2;15;0;2;;;;;;;1;;1;;;;;;No;30;3
+307;INDUSTRI17;Task 304;PSQL02;;Yes;IND;No;1;15;0;4;;;;1;;;;;;;;;;;No;30;3
+308;INDUSTRI18;Task 305;PSQL03;;Yes;IND;No;1;4.5;0;0.5;;1;;1;;;1;;1;;;;;;No;31;3
+309;INDUSTRI19;Task 306;PSQL04;;Yes;IND;No;1;4;0;0.5;;1;;1;;;1;;;1;;;;;No;31;3
+310;INDUSTRI20;Task 307;PSQL05;;Yes;PRI;No;1;4;0;0.5;1;1;;1;;;1;;;;;;;;No;31;3
+311;INDUSTRI21;Task 308;PPQW02;;Yes;PRI;No;1;15;0;0.5;1;1;;1;;;1;;1;;;;;;No;31;3
+312;INDUSTRI22;Task 309;NPWQ01;;Yes;PRI;No;1;4;0;6;;;;1;;;1;;;;;;;;No;32;3
+313;INDUSTRI23;Task 310;NPWQ02;;Yes;IND;No;2;12;0;5;;;;1;;;;;;;;;;;No;32;3
+314;INDUSTRI24;Task 311;NPWQ03;;Yes;IND;No;2;15;0;3;;1;;1;;;;;;;;;;;No;33;3
+315;INDUSTRI25;Task 312;nTn01;;Yes;IND;No;1;4.5;0;1;;;;;;;;1;;;1;;;;No;34;3
+316;INDUSTRI26;Task 313;nTn02;;Yes;IND;No;2;4;0;2;;1;;1;;;;1;;;1;;;;No;34;3
+317;INDUSTRI27;Task 314;nTn03;;Yes;IND;No;1;4;0;4;1;1;;;1;;;;;;;;;;No;34;3
+318;INDUSTRI28;Task 315;TnT01;;Yes;IND;No;1;4;0;0.5;1;1;;;;;;;;1;;;;;No;34;3
+319;INDUSTRI29;Task 316;TnT02;;Yes;PRI;No;1;4;0;0.5;1;1;;1;;;;1;;1;;;;;No;34;3
+320;INDUSTRI30;Task 317;TnT03;;Yes;PRI;No;1;4.5;0;0.5;1;1;;;;;;1;;1;;;;;No;34;3
+321;INDUSTRI31;Task 318;TnT04;;Yes;PRI;No;1;4.5;0;0.5;1;;1;;;;;1;;1;;;;;No;29;3
+322;INDUSTRI32;Task 319;WyL01;;Yes;IND;No;3;4;0;6;1;;1;;;;;1;;1;;;;;No;29;3
+323;INDUSTRI33;Task 320;WyL02;;Yes;IND;No;1;4;0;5;1;;;;1;;;;;1;;;;;No;29;3
+324;INDUSTRI34;Task 321;PS01;;Yes;IND;No;3;15;0;6;1;;;;1;;;;;1;;;;;No;30;3
+325;INDUSTRI35;Task 322;PS02;;Yes;IND;No;1;4.5;0;6;;;;;;;;1;;1;;;;;No;30;3
+326;INDUSTRI36;Task 323;PS03;;Yes;IND;No;2;4;0;5;;;1;;;;1;;;;;;;;No;31;3
+327;INDUSTRI37;Task 324;PS04;;Yes;IND;No;1;4;0;3;1;;1;;1;;1;1;;1;;;;;No;31;3
+328;INDUSTRI38;Task 325;PS05;;Yes;PRI;No;1;4;0;1;1;;1;;1;;1;1;;;1;;;;No;31;3
+329;INDUSTRI39;Task 326;PS06;;Yes;Skadeservice;No;1;15;0;2;1;;;;1;;1;1;;;;;;;No;29;3
+330;INDUSTRI40;Task 327;PS07;;Yes;Skadeservice;No;1;5;0;6;1;;;;1;;1;1;;1;;;;;No;30;3
+331;INDUSTRI41;Task 328;PS08;;Yes;Skadeservice;No;1;3;0;5;;;;;;;1;1;;;;;;;No;30;3
+332;INDUSTRI42;Task 329;PS09;;Yes;Skadeservice;No;2;7;0;3;;;1;;;;1;;;;;;;;No;31;3
+333;INDUSTRI43;Task 330;PS10;;Yes;Skadeservice;No;1;4.5;0;2;1;;1;;1;;1;;;;;;;;No;31;3
+334;INDUSTRI44;Task 331;PS11;;Yes;Skadeservice;No;1;15;0;6;1;;1;;;;;;;;;;;;No;31;3
+335;INDUSTRI45;Task 332;PS12;;Yes;NetworkCraftman;No;1;4.5;0;5;;;1;;1;;1;;;;;;;;No;31;3
+336;INDUSTRI46;Task 333;PS13;;Yes;NetworkCraftman;No;1;15;0;3;;;1;;1;;;1;;;;;;;No;32;3
+337;INDUSTRI47;Task 334;PS14;;Yes;NetworkCraftman;No;1;7;0;4;1;;1;;1;;;;;;;;;;No;32;3
+338;INDUSTRI48;Task 335;GBPO01;;Yes;NetworkCraftman;No;1;3;0;2;;;;;1;;1;;;;;;;;No;33;3
+339;INDUSTRI49;Task 336;HRX07;;Yes;NetworkCraftman;No;1;8;0;4;1;;1;;1;;;;;;;;;;No;34;3
+340;INDUSTRI50;Task 337;HRX08;;Yes;Renovering;No;3;5;0;0.5;1;1;;;1;;;;;;;;;;No;34;3
+341;INDUSTRI51;Task 338;QNO01;;Yes;Renovering;No;1;3;0;0.5;1;1;;;1;;;;;;;;;;No;34;3
+342;INDUSTRI52;Task 339;QNO02;;Yes;Renovering;No;3;4;0;0.5;1;;;;;;;;;;;;;;No;34;3
+343;INDUSTRI53;Task 340;QNO03;;Yes;Industri;No;1;4;0;4;1;;;1;;;;;;;;;;;No;34;3
+344;INDUSTRI54;Task 341;QNO04;;Yes;Industri;No;2;15;0;4;1;1;;1;;;;;;;;;;;No;29;3
+345;INDUSTRI55;Task 342;QNO05;;Yes;Industri;No;1;15;0;6;1;1;;1;;;;1;;;;;;;No;30;3
+346;INDUSTRI56;Task 343;OO01;;Yes;Industri;No;1;4;0;2;;1;;1;;;;1;;;;;;;No;30;3
+347;INDUSTRI57;Task 344;GBPO01;;Yes;Industri;No;1;15;0;4;;1;;1;;;;;;;;;;;No;31;3
+348;INDUSTRI58;Task 345;EQCA02, PST03;;Yes;Industri;No;1;5;0;4;1;;;1;;;;;1;;;;;;No;31;3
+349;INDUSTRI59;Task 346;WQEC01, PS03;;Yes;Kloak;No;1;4;0;2;1;;;1;;;;;1;;;;;;No;31;3
+350;INDUSTRI60;Task 347;WQEC01, PS03;;Yes;Kloak;No;2;4;0;2;;1;;1;;;;;;;;;;;No;31;3
+351;INDUSTRI61;Task 348;WQEC01, PS03;;Yes;Kloak;No;2;4;0;2;;;;;;;;1;;;;;;;No;32;3
+352;INDUSTRI62;Task 349;WQEC01, PS03;;Yes;FE;No;1;4.5;0;4;1;1;;1;;;;1;;;;;;;No;32;3
+353;INDUSTRI63;Task 350;PST13;;Yes;Indbrud;No;2;15;0;3;;1;;;1;;;1;;;;;;;No;33;3
+354;INDUSTRI64;Task 351;EQCA02, PST09;;Yes;Indbrud;No;1;4.5;0;5;1;1;;;;;;1;;;;;;;No;34;3
+355;INDUSTRI65;Task 352;OQLE01;;Yes;Indbrud;No;1;4;0;6;1;1;;1;;;;1;;;;;;;No;34;3
+356;INDUSTRI66;Task 353;OQLE02, WQEC03, WQEC02, WQEC04, WQEC05, PS14, PS11, WyL02, TnT04, PST10, PST11, PST12, WQEC06;;Yes;Indbrud;No;1;4;0;3;1;1;;;;;;1;;;;;;;No;34;3
+357;INDUSTRI67;Task 354;EQCA03;;Yes;Indbrud;No;1;4;0;2;1;;1;;;;;1;;;;;;;No;34;3
+358;INDUSTRI68;Task 355;WWW01;;Yes;Indbrud;No;1;15;0;2;1;;;1;;1;;1;;;;;;;No;34;3
+359;INDUSTRI69;Task 356;WWW02;;Yes;SpecialTBpport;No;3;3;0;4;1;;1;;;1;;;;;;;;;No;32;3
+360;INDUSTRI70;Task 357;WWW03;;Yes;SpecialTBpport;No;1;15;0;0.5;;;1;;;1;;;;1;;;;;No;33;3
+361;INDUSTRI71;Task 358;WWW04;;Yes;FE;No;1;15.5;0;2;1;;;1;;1;;1;;1;;;;;No;34;3
+362;INDUSTRI72;Task 359;WWW05;;Yes;Indbrud;No;1;4.5;0;5;;;1;;;;1;;;;;;;;No;34;3
+363;INDUSTRI73;Task 360;WWW06;;Yes;SpecialTBpport;No;2;2;0;5;1;;1;;1;;1;;;1;;;;;No;34;3
+364;INDUSTRI74;Task 361;WWW06;;Yes;SpecialTBpport;No;1;4.5;0;2;1;;1;;;;;;;;1;;;;No;34;3
+365;INDUSTRI75;Task 362;WWW06;;Yes;FE;No;1;4;0;0.5;;;1;;1;;1;;;;;;;;No;34;3
+366;INDUSTRI76;Task 363;WWW07, WWW08, WWW09;;Yes;Indbrud;No;1;4;0;0.5;;;1;;1;;;1;;1;;;;;No;29;3
+367;INDUSTRI77;Task 364;WWW07, WWW08, WWW09;;Yes;SpecialTBpport;No;1;15;0;4;1;;1;;1;;;;;;;;;;No;30;3
+368;INDUSTRI78;Task 365;WWW07, WWW08, WWW09;;Yes;SpecialTBpport;No;1;15;0;4;;;;;1;;1;;;;;;;;No;30;3
+369;INDUSTRI79;Task 366;WWW07, WWW08, WWW09, PS12;;Yes;FE;No;1;4;0;6;1;;1;;1;;;;;;;;;;No;31;3
+370;INDUSTRI80;Task 367;WWW07, WWW08, WWW09, PS13;;Yes;Indbrud;No;1.5;15.5;0;2;1;1;;;1;;;;;;;;;;No;32;3
+371;INDUSTRI81;Task 368;PS09;;Yes;SpecialTBpport;No;1;15;0;4;1;1;;;1;;;;;;;;;;No;33;3
+372;INDUSTRI82;Task 369;PS10;;Yes;SpecialTBpport;No;1;4.5;0;4;1;;;;;;;;1;;;;;;No;34;3
+373;INDUSTRI83;Task 370;PS11;;Yes;FE;No;1;4;0;2;1;;;1;;;;;;;1;;;;No;34;3
+374;INDUSTRI84;Task 371;PS12;;Yes;Indbrud;No;1;4;0;2;1;;;1;;;;1;;;1;;;;No;34;3
+375;INDUSTRI85;Task 372;PS13;;Yes;SpecialTBpport;No;3;4;0;2;1;1;;1;;1;;1;;;;;;;No;34;3
+376;PRIVAT01;Task 373;PS14;;Yes;SpecialTBpport;No;2;4;0;4;;1;;1;;;;;;;;;;;No;34;3
+377;PRIVAT02;Task 374;GBPO01;;Yes;FE;No;1.5;6;0;3;;;;1;;1;;1;;;;;;;No;29;3
+378;PRIVAT03;Task 375;HRX07;;Yes;Indbrud;No;1;4.5;0;5;1;;;;;1;;;;1;;;;;No;30;3
+379;PRIVAT04;Task 376;HRX08;;Yes;SpecialTBpport;No;1;4;0;6;1;1;;1;;1;;1;;1;;;;;No;30;3
+380;PRIVAT05;Task 377;QNO01;;Yes;SpecialTBpport;No;1;4;0;3;;;;1;;1;;;;;;;;;No;31;3
+381;PRIVAT06;Task 378;QNO02;;Yes;FE;No;1;4;0;2;;1;;;;1;;1;;1;;;;;No;30;3
+382;PRIVAT07;Task 379;QNO03;;Yes;Indbrud;No;1;2;0;2;1;1;1;;;1;;1;;;1;;;;No;31;3
+383;PRIVAT08;Task 380;QNO04;;Yes;SpecialTBpport;No;1;4.5;0;4;;1;1;1;;1;;1;;;;;;;No;31;3
+384;PRIVAT09;Task 381;QNO05;;Yes;SpecialTBpport;No;3;4.5;0;0.5;1;1;;;;;;1;;1;;;;;No;31;3
+385;PRIVAT10;Task 382;OO01;;Yes;FE;No;1;4;0;2;1;1;;1;;1;;1;;;;;;;No;31;3
+386;PRIVAT11;Task 383;GBPO01;;Yes;Indbrud;No;1;4;0;5;1;1;1;1;1;;;1;;;;;;;No;31;3
+387;PRIVAT12;Task 384;EQCA02, PST03;;Yes;SpecialTBpport;No;1;4;0;5+L248:L388;1;1;;1;1;;;1;;;;;;;No;31;3
+388;PRIVAT13;Task 385;WQEC01, PS03;;Yes;SpecialTBpport;No;2;4.5;0;2;1;;1;1;;;;;;;;;;;No;32;3
+389;PRIVAT14;Task 386;WQEC01, PS03;;Yes;FE;No;1;4.5;0;;1;;1;1;;;;;1;;;;1;;No;32;3
+390;PRIVAT15;Task 387;WQEC01, PS03;;Yes;Indbrud;No;1;4.5;0;;;1;;1;1;;1;;1;;1;;1;;No;33;3
+391;PRIVAT16;Task 388;WQEC01, PS03;;Yes;IND;No;1;15;0;;1;1;;1;1;;1;;1;;;;;;No;34;3
+392;PRIVAT17;Task 389;PST13;;Yes;IND;No;1;4.5;0;;1;;1;;1;;;;1;;1;;1;;No;34;3
+393;PRIVAT18;Task 390;EQCA02, PST09;;Yes;IND;No;1;4;0;0.5;1;;;;1;;;;1;;1;;;1;No;34;3
+394;PRIVAT19;Task 391;;;Yes;IND;No;1;4;0;0.5;1;1;1;1;;;1;;1;;1;;;;No;34;3
+395;PRIVAT20;Task 392;;;No;IND;No;1.5;4;0;4;1;;1;1;;;;;;;1;;1;;No;34;3
+396;PRIVAT21;Task 393;;;No;SpecialTBpport;No;1;4;0;4;1;1;;;1;;1;;1;;1;;;;No;34;3
+397;PRIVAT22;Task 394;;;No;FE;No;1;15;0;6;;1;1;;1;;1;1;;;1;;;;No;31;3
+398;PRIVAT23;Task 395;PS01, PS02, PST04, PST05, PST06, PST07, EQCA02;;No;Indbrud;No;1;4.5;0;2;;1;1;;1;;1;1;;;1;;;;No;32;3
+399;PRIVAT24;Task 396;PS03;;No;SpecialTBpport;No;1;4;0;4;1;1;;;1;;1;;;;;;;;No;32;3
+400;PRIVAT25;Task 397;WQEC01, PS03, EQCA02;;No;SpecialTBpport;No;3;4;0;0.5;;1;;;1;;1;;;1;;;;;No;33;3
+401;PRIVAT26;Task 398;PS05, GBPO02, PST08, WyL01;;No;IND;No;2;4;0;0.5;1;;1;;1;;1;1;;1;;;;;No;34;3
+402;PRIVAT27;Task 399;PS06, PST14, PS04;;No;IND;No;1.5;4;0;2;1;;;;;;1;1;;1;;;;1;No;34;3
+403;PRIVAT28;Task 400;PS07;;No;IND;No;1;15;0;2;1;;1;;1;;;1;;1;;;;1;No;34;3
+404;PRIVAT29;Task 401;PS07;;No;IND;No;1;15;0;4;1;;1;1;;;;1;;1;;;;;No;34;3
+405;PRIVAT30;Task 402;PS07;;No;IND;No;1;4.5;0;3;1;;1;1;;;1;;;1;;;;;No;34;3
+406;PRIVAT31;Task 403;TnT03, WQEC01, GBPO02, PS08, PS09, PS10, nTn03;;No;Indbrud;No;1;4;0;5;1;;1;;;;1;;;1;;;;;No;34;3
+407;PRIVAT32;Task 404;PS07;;No;SpecialTBpport;No;1;4;0;9;1;;1;;;1;;1;;1;;;;;No;29;3
+408;PRIVAT33;Task 405;PS07;;No;SpecialTBpport;No;1;4;0;7;;;;;1;;;;;;;;;1;No;29;3
+409;PRIVAT34;Task 406;PS11;;No;IND;No;1;4;0;2;;;;;;;;;;;;;;1;No;29;3
+410;PRIVAT35;Task 407;PS03, EQCA02, WQEC01;;No;IND;No;3;4;0;2;1;;;;;1;;;;;1;;;1;No;30;3
+411;PRIVAT36;Task 408;GBPO01;;No;IND;No;1.5;4;0;2;;;;;;1;;1;;;;;;1;No;30;3
+412;PRIVAT37;Task 409;EQCA02, PST03;;No;IND;No;1;4;0;0.5;;;1;;;;;1;;;;;;1;No;31;3
+413;PRIVAT38;Task 410;WQEC01, PS03;;No;IND;No;1;4.15;0;2;;;1;;;;;;1;;;;;1;No;31;3
+414;PRIVAT39;Task 411;WQEC01, PS03;;No;IND;No;1.5;5;0;5;;;;;;;;;1;;;;;1;No;31;3
+415;PRIVAT40;Task 412;WQEC01, PS03;;Yes;IND;No;1;3;0;9;;;;;;;;;;1;;1;;1;No;31;3
+416;PRIVAT41;Task 413;WQEC01, PS03;;Yes;IND;No;1;7;0;2;;1;;;;;;;;1;;;;;No;32;3
+417;PRIVAT42;Task 414;PST13;;Yes;FE;No;1;4.5;0;2;;;;;1;;;;;;;;;;Yes;32;3
+418;PRIVAT43;Task 415;EQCA02, PST09;;No;Indbrud;No;1;15;0;6;;;;;1;;;;;;;;;;Yes;33;3
+419;PRIVAT44;Task 416;OQLE01;;Yes;SpecialTBpport;No;1;4.5;0;3;1;;;;;;;;;;;;;;No;34;3
+420;PRIVAT45;Task 417;OQLE02, WQEC03, WQEC02, WQEC04, WQEC05, PS14, PS11, WyL02, TnT04, PST10, PST11, PST12, WQEC06;;No;IND;No;1;15;0;4;1;;;;;1;;;;1;;;;;No;34;3
+421;PRIVAT46;Task 418;EQCA03;;No;IND;No;1.5;4.3;0;3;;;;;;1;;;;1;;;;;No;34;3
+422;PRIVAT47;Task 419;WWW01;;No;IND;No;1.5;3;0;2;;;;1;;;1;;;;;;;;No;34;3
+423;PRIVAT48;Task 420;WWW02;;No;IND;No;1.5;4.3;0;4;;;;;;;1;;;;;;;;No;34;3
+424;PRIVAT49;Task 421;WWW03;;No;IND;No;1;5;0;1;;;;;;;;1;;1;;;;;No;34;3
+425;PRIVAT50;Task 422;WWW04;;No;IND;No;1;4.2;0;5;;;1;1;;;;1;;;;;;;No;29;3
+426;PRIVAT51;Task 423;WWW05;;Yes;IND;No;3;4;0;6;;;;;;;;;;1;;;;;No;29;3
+427;PRIVAT52;Task 424;WWW06;;Yes;IND;No;2;4;0;2;;;;;1;;;;1;;;;;;No;29;3
+428;PRIVAT53;Task 425;WWW06;;Yes;IND;No;1.5;15;0;6;;;;;1;;;;1;;;;;;No;30;3
+429;PRIVAT54;Task 426;WWW06;;No;IND;No;1;15;0;6;1;;;;;1;;;;;;;;;No;30;3
+430;PRIVAT55;Task 427;WWW07, WWW08, WWW09;;Yes;IND;No;1;4;0;12;1;;;;;1;;;;;;;;;Yes;31;3
+431;PRIVAT56;Task 428;WWW07, WWW08, WWW09;;No;PRI;No;1;15;0;4;;1;;;;;1;;1;;;;;;No;31;3
+432;PRIVAT57;Task 429;WWW07, WWW08, WWW09;;No;PRI;No;1;4.5;0;3;;1;;;;;1;;;;;;;;Yes;31;3
+433;PRIVAT58;Task 430;WWW07, WWW08, WWW09, PS12;;No;PRI;No;1;4;0;0.5;;;1;;;;;;1;;;;;;No;29;3
+434;PRIVAT59;Task 431;WWW07, WWW08, WWW09, PS13;;No;IND;No;1.5;4;0;34;;;1;;;;;;;;;;;;No;30;3
+435;PRIVAT60;Task 432;WWW10, WWW11, WWW12, WWW13, WWW14;;Yes;IND;No;1;4;0;0;;;;;1;;;;;1;;;;;No;30;3
+436;PRIVAT61;Task 433;WWW15;;Yes;IND;No;1;4.5;0;4;;;1;;;;;;;1;;1;;;No;31;3
+437;PRIVAT62;Task 434;PPQW01;;Yes;IND;No;1;15;0;6;1;;1;;;;1;;;;;1;;;Yes;31;3
+438;PRIVAT63;Task 435;PPQW02;;Yes;IND;No;1;4.5;0;2;1;;1;;;;1;;;;;;1;;No;31;3
+439;PRIVAT64;Task 436;PPQW02;;Yes;IND;No;1;4;0;6;;;1;;;;;;;;;;1;;Yes;31;3
+440;PRIVAT65;Task 437;PPQW02;;Yes;IND;No;1;4;0;6;;;1;;;;;;;;;;;1;Yes;32;3
+441;PRIVAT66;Task 438;NPWQ01, NPWQ02, NPWQ03;;Yes;PRI;No;2;4.5;0;12;1;;1;;;1;;;;;;;;1;No;32;3
+442;PRIVAT67;Task 439;NPWQ01, NPWQ02, NPWQ03;;No;PRI;No;1;4;0;4;;;;;;;;;1;;;;;;No;33;3
+443;PRIVAT68;Task 440;NPWQ01, NPWQ02, NPWQ03;;No;PRI;No;1;15;0;3;1;;1;;;;;;1;;;;;;Yes;34;3
+444;PRIVAT69;Task 441;NPWQ01, NPWQ02, NPWQ03, PS12;;No;IND;No;2;15;0;0.5;1;;;1;1;;;;;;;;;;No;34;3
+445;PRIVAT70;Task 442;NPWQ01, NPWQ02, NPWQ03, PS13;;No;IND;No;1;15;0;34;1;;;;1;;;;;1;;;;1;Yes;34;3
+446;PRIVAT71;Task 443;NPWQ04, NPWQ05, NPWQ06, NPWQ07, NPWQ08;;No;IND;No;1;4.5;0;1;1;;1;;;;;;;1;;;;1;No;34;3
+447;PRIVAT72;Task 444;NPWQ09;;No;IND;No;1.5;4;0;2;1;;;1;;;;1;;;1;;;;No;34;3
+448;PRIVAT73;Task 445;FPCP01;;No;IND;No;1;4;0;4;1;;;;;;;;;;1;;;;No;29;3
+449;PRIVAT74;Task 446;FPCP02;;Yes;IND;No;1;15;0;0.5;1;;;;;;;;;;;1;;1;No;30;3
+450;PRIVAT75;Task 447;PCPAQ01;;Yes;PRI;No;1;4;0;4;;;;;;;1;1;;;;1;;;No;30;3
+451;PRIVAT76;Task 448;PCPAQ02;;Yes;PRI;No;1;4.15;0;6;;;1;;;;;;;;;;;1;No;31;3
+452;PRIVAT77;Task 449;PCPAQ03;;No;PRI;No;2;15;0;5;1;;1;;;;;;1;;;;1;;No;31;3
+453;PRIVAT78;Task 450;nTn01;;Yes;IND;No;1;4.5;0;3;1;;1;;;;;;1;;;;1;;No;31;3
+454;PRIVAT79;Task 451;nTn02;;No;IND;No;1;4;0;2;;;1;;1;;;;;1;;;;;No;31;3
+455;PRIVAT80;Task 452;nTn03;;No;IND;No;1;4;0;3;;;1;;1;;;;;1;;;;;No;32;3
+456;PRIVAT81;Task 453;TnT01;;No;IND;No;1;4;0;5;1;;1;;;1;;;;;1;;1;;No;32;3
+457;SSGINDUSTRI01;Task 454;TnT02;;No;IND;No;1;4;0;1;;;;;;1;;;;;1;;;;No;33;3
+458;SSGINDUSTRI02;Task 455;TnT03;;No;PRI;No;1;4.5;0;2;1;;1;;;;1;;;;;;1;;No;34;3
+459;SSGINDUSTRI03;Task 456;TnT04;;No;PRI;No;1;4.5;0;4;1;;;1;;;1;;;;1;;;;No;34;3
+460;SSGINDUSTRI04;Task 457;WyL01;;Yes;PRI;No;1;4;0;0.5;;;;;1;;;;;;1;;;;No;34;3
+461;SSGINDUSTRI05;Task 458;WyL02;;Yes;IND;No;1;4;0;4;;;;;;;;;;;;;;;No;34;3
+462;SSGINDUSTRI06;Task 459;PS01;;Yes;IND;No;1;15;0;6;1;;;;;1;;;;;;;;;No;34;3
+463;SSGINDUSTRI07;Task 460;PS02;;No;IND;No;1;4.5;0;0.5;;;;;;1;;1;;;;;;;Yes;32;3
+464;SSGINDUSTRI08;Task 461;PS03;;Yes;Fyn;No;2;4;0;4;;;1;;;;;1;;;;;;;No;33;3
+465;SSGINDUSTRI09;Task 462;PS04;;No;SpecialTBpport;No;1;4;0;6;;;1;;;;;;1;;;;;;No;34;3
+466;SSGINDUSTRI10;Task 463;PS05;;No;SpecialTBpport;No;1;4;0;5;;;;;;;;;1;;;;;;No;34;3
+467;SSGINDUSTRI11;Task 464;PS06;;No;Fyn;No;2;6.5;0;3;;;;;;;;;;1;;;;;No;34;3
+468;SSGINDUSTRI12;Task 465;PS07;;No;SpecialTBpport;No;4;5;0;2;;1;;;;;;;;1;;;;;No;34;3
+469;SSGINDUSTRI13;Task 466;PS08;;Yes;SpecialTBpport;No;1;3;0;4;;;;;1;;;;;;;;;;No;34;3
+470;SSGINDUSTRI14;Task 467;PS09;;Yes;TB;No;2;7;0;6;;;;;1;;;;;;;;;;No;29;3
+471;SSGINDUSTRI15;Task 468;PS10;;Yes;TB;No;1;4.5;0;5;1;;;;;;;;;;;;;;No;30;3
+472;SSGINDUSTRI16;Task 469;PS11;;Yes;Fyn;No;1;15;0;3;1;;;;;1;;;;1;;;;;Yes;30;3
+473;SSGINDUSTRI17;Task 470;PS12;;Yes;SpecialTBpport;No;1;4.5;0;1;;;;;;1;;;;1;;;;;Yes;31;3
+474;SSGINDUSTRI18;Task 471;PS13;;Yes;SpecialTBpport;No;1;15;0;2;;;;1;;;1;;;;;;;;Yes;32;3
+475;SSGINDUSTRI19;Task 472;PS14;;Yes;TB;No;1.5;8.5;0;4;;;;;;;1;;;;;;;;Yes;33;3
+476;SSGINDUSTRI20;Task 473;GBPO01;;No;TB;No;1;3;0;0.5;;;;;;;;1;;1;;;;;Yes;34;3
+477;SSGINDUSTRI21;Task 474;PCFAG01;;No;IC;No;1.5;8.5;0;0.5;;;1;1;;;;1;;;;;;;No;34;3
+478;SSGINDUSTRI22;Task 475;PCFAG02;;No;Skadeservice;No;1;5;0;5;;;;;;;;;;1;;;;;No;34;3
+479;SSGINDUSTRI23;Task 476;PCFAG03;;No;Fyn;No;1.5;8.5;0;6;;;;;1;;;;1;;;;;;No;34;3
+480;SSGINDUSTRI24;Task 477;PCFAG04;;No;SpecialTBpport;No;1;4;0;2;;;;;1;;;;1;;;;;;No;34;3
+481;SSGINDUSTRI25;Task 478;PCFAG05;;No;SpecialTBpport;No;1;4;0;6;1;;;;;1;;;;;;;;;No;29;3
+482;SSGINDUSTRI26;Task 479;PCFAG06;;No;TB;No;1;15;0;6;1;;;;;1;;;;;;;;;No;30;3
+483;SSGINDUSTRI27;Task 480;PCFAG07;;Yes;TB;No;1;15;0;12;;1;;;;;1;;1;;;;;;No;30;3
+484;SSGINDUSTRI28;Task 481;PCFAG08;;Yes;IC;No;1;4;0;4;;1;;;;;1;;;;;;;;No;31;3
+485;SSGINDUSTRI29;Task 482;PCFAG09;;Yes;Skadeservice;No;1;15;0;3;;;1;;;;;;1;;;;;;No;30;3
+486;SSGINDUSTRI30;Task 483;PCFAG10;;No;Skadeservice;No;1;4.5;0;0.5;;;1;;;;1;;;;;;;;No;31;3
+487;SSGINDUSTRI31;Task 484;PCFAG11;;Yes;IND;No;1;4;0;34;;;;;1;;1;;;;;;;;No;31;3
+488;SSGINDUSTRI32;Task 485;PCFAG12;;No;IND;No;1;4;0;0;1;;1;;;;;;;;;;;;Yes;31;3
+489;SSGINDUSTRI33;Task 486;PCFAG13;;No;PRI;No;1;4;0;4;1;;;;;1;;;;;;;;;No;31;3
+490;SSGINDUSTRI34;Task 487;PCFAG14;;No;PRI;No;1;4.5;0;6;1;;;;;;;;;;;;;;Yes;31;3
+491;SSGINDUSTRI35;Task 488;WWW06;;No;PRI;No;1;15;0;2;;1;;;;;1;;;;;;;;No;31;3
+492;SSGINDUSTRI36;Task 489;WWW07;;No;IND;No;1;4.5;0;6;;;;;;;1;;1;;;;;;No;32;3
+493;SSGINDUSTRI37;Task 490;WWW08;;No;IND;No;1;4;0;6;1;;;1;;;;;1;;;;;;No;32;3
+494;SSGINDUSTRI38;Task 491;WWW09;;Yes;IND;No;1;4;0;12;;;;1;;;;;;1;;;;;No;33;3
+495;SSGINDUSTRI39;Task 492;WWW10;;Yes;Fyn;No;1;4;0;4;1;;;;;;;;;1;;;;;Yes;34;3
+496;SSGINDUSTRI40;Task 493;WWW11;;Yes;SpecialTBpport;No;1;15;0;3;1;;;;;;;;;;1;;;;Yes;34;3
+497;SSGINDUSTRI41;Task 494;WWW12;;No;SpecialTBpport;No;3;3;0;0.5;1;;1;;;;;;;;1;;;;Yes;34;3
+498;SSGINDUSTRI42;Task 495;WWW13;;Yes;Fyn;No;1;15;0;34;1;;;;;1;;;;;;;;;No;34;3
+499;SSGINDUSTRI43;Task 496;WWW14;;No;SpecialTBpport;No;1;15.5;0;1;1;;;;;1;;;;;;;;;No;34;3
+500;SSGINDUSTRI44;Task 497;WWW15;;No;SpecialTBpport;No;1;4.5;0;2;1;1;;;;;;;;;;;;;No;34;3
+501;SSGINDUSTRI45;Task 498;PPQW01;;No;TB;No;2;2;0;4;;1;;;;;1;;;;1;;;;No;31;3
+502;SSGINDUSTRI46;Task 499;PPQW02;;No;TB;No;1;4.5;0;0.5;;;;;;;1;;;;1;;;;No;32;3
+503;SSGINDUSTRI47;Task 500;NPWQ01;;Yes;Fyn;No;1;4;0;4;1;;;;1;;;1;;;;;;;No;32;3
+504;SSGINDUSTRI48;Task 501;NPWQ02;;Yes;SpecialTBpport;No;1;4;0;6;;;;;;;;1;;;;;;;No;33;3
+505;SSGINDUSTRI49;Task 502;NPWQ03;;Yes;SpecialTBpport;No;1;15;0;5;1;;;;;;;;1;;1;;;;No;34;3
+506;SSGINDUSTRI50;Task 503;nTn01;;Yes;TB;No;1;15;0;3;1;;;1;1;;;;1;;;;;;No;34;3
+507;SSGINDUSTRI51;Task 504;nTn02;;Yes;TB;No;1;4;0;2;1;;;;;;;;;;1;;;;No;34;3
+508;SSGINDUSTRI52;Task 505;nTn03;;Yes;IC;No;1.5;15.5;0;3;1;;;;;1;;;;1;;;;;No;34;3
+509;SSGINDUSTRI53;Task 506;TnT01;;Yes;Skadeservice;No;1;15;0;5;1;;;;;1;;;;1;;;;;Yes;34;3
+510;SSGINDUSTRI54;Task 507;TnT02;;No;Fyn;No;1;4.5;0;1;1;1;;;;;1;;;;;;;;No;34;3
+511;SSGINDUSTRI55;Task 508;TnT03;;No;SpecialTBpport;No;1;4;0;2;1;1;;;;;1;;;;;;;;Yes;29;3
+512;SSGINDUSTRI56;Task 509;TnT04;;No;SpecialTBpport;No;1;4;0;4;1;;1;;;;;1;;1;;;;;No;29;3
+513;SSGINDUSTRI57;Task 510;WyL01;;No;TB;No;1;4;0;0.5;1;;1;;;;;1;;;;;;;No;29;3
+514;SSGINDUSTRI58;Task 511;WyL02;;No;TB;No;1;4;0;4;1;;;1;;;;;;1;;;;;No;30;3
+515;SSGINDUSTRI59;Task 512;PS01;;No;IC;No;1;15;0;6;;;;1;;;;1;;;;;;;No;30;3
+516;SSGINDUSTRI60;Task 513;PS02;;No;PRI;No;1;15;0;0.5;;;;;;1;;1;;;;;;;Yes;31;3
+517;SSGINDUSTRI61;Task 514;PS03;;Yes;PRI;No;1;4.5;0;4;1;;1;;;;;;;;;;;;No;31;3
+518;SSGINDUSTRI62;Task 515;PS04;;Yes;PRI;No;1;4;0;6;1;;1;;;;;;;;;;;;Yes;31;3
+519;SSGINDUSTRI63;Task 516;PS05;;Yes;IND;No;1;4;0;5;;;1;;;;;;;;;;;;Yes;31;3
+520;SSGINDUSTRI64;Task 517;PS06;;No;IND;No;1;4;0;3;;;1;;;;;;;;;;;;No;32;3
+521;SSGINDUSTRI65;Task 518;PS07;;Yes;IND;No;1;4;0;2;1;;1;;;;;;;;;;;;No;32;3
+522;SSGINDUSTRI66;Task 519;PS08;;No;IND;No;1;4;0;4;;;;;;;;;;;;;;;Yes;33;3
+523;SSGINDUSTRI67;Task 520;PS09;;No;Fyn;No;1;4;0;6;1;;1;;;;;;;;;;;;No;34;3
+524;SSGINDUSTRI68;Task 521;PS10;;No;Fyn;No;1;4;0;5;1;;;1;;;;;;;;;;;Yes;34;3
+525;SSGINDUSTRI69;Task 522;PS11;;No;Fyn;No;1;4;0;3;1;;;;;;;;;;;;;;No;34;3
+526;SSGINDUSTRI70;Task 523;PS12;;No;Fyn;No;1;4;0;1;1;;;;;1;;;;;;;;;No;34;3
+527;SSGINDUSTRI71;Task 524;PS13;;No;SpecialTBpport;No;1;15;0;2;1;;;;;;;;;;;;;;No;34;3
+528;SSGINDUSTRI72;Task 525;PS14;;Yes;SpecialTBpport;No;1;15;0;4;1;1;;;;;1;;;;;;;;Yes;34;3
+529;SSGINDUSTRI73;Task 526;GBPO01;;Yes;Fyn;No;1;4.5;0;0.5;1;;;;;;1;;1;;;;;;Yes;29;3
+530;SSGINDUSTRI74;Task 527;HRX07;;Yes;SpecialTBpport;No;1;4;0;0.5;1;;;1;;;;;1;;;;;;No;29;3
+531;SSGINDUSTRI75;Task 528;HRX08;;No;SpecialTBpport;No;1;4;0;0.5;1;;;1;;;;;;1;;;;;No;29;3
+532;SSGINDUSTRI76;Task 529;QNO01;;Yes;TB;No;1;4;0;0.5;1;;;;;;;;;1;;;;;No;30;3
+533;SSGINDUSTRI77;Task 530;QNO02;;No;TB;No;1;4;0;4;;;;;;;;;;;1;;;;No;30;3
+534;SSGINDUSTRI78;Task 531;QNO03;;No;Fyn;No;1;4;0;6;;;1;;;;;;;;1;;;;No;31;3
+535;SSGINDUSTRI79;Task 532;QNO04;;No;SpecialTBpport;No;1;4;0;5;1;;;;;1;;;;;;;;;No;31;3
+536;SSGINDUSTRI80;Task 533;QNO05;;No;SpecialTBpport;No;1;4;0;3;1;;;;;1;;;;;;;;;No;31;3
+537;SSGINDUSTRI81;Task 534;OO01;;Yes;TB;No;2;2;0;2;1;1;;;;;;;;;;;;;No;29;3
+538;SSGINDUSTRI82;Task 535;OO02;;Yes;TB;No;1;4.5;0;4;1;1;;;;;1;;;;1;;;;No;30;3
+539;SSGINDUSTRI83;Task 536;OO03;;Yes;IND;No;1;4;0;6;;;;;;;1;;;;1;;;;No;30;3
+540;SSGINDUSTRI84;Task 537;OO04;;Yes;IND;No;1;4;0;5;;;;;1;;;1;;;;;;;No;31;3
+541;SSGINDUSTRI85;Task 538;OO05;;Yes;IND;No;1;15;0;3;1;;;;;;;1;;;;;;;Yes;31;3
+542;SSGINDUSTRI86;Task 539;OO06;;Yes;PRI;No;1;15;0;1;1;;;;;;;;1;;1;;;;No;31;3
+543;SSGINDUSTRI87;Task 540;OO07;;Yes;PRI;No;1;4;0;2;;;;1;1;;;;1;;;;;;Yes;31;3
+544;SSGINDUSTRI88;Task 541;QWX01;;No;PRI;No;1.5;15.5;0;4;;;;;;;;;;;1;;;;No;32;3
+545;SSGINDUSTRI89;Task 542;QWX02;;No;IND;No;1;15;0;0.5;1;;;;;1;;;;1;;;;;No;32;3
+546;SSGINDUSTRI90;Task 543;XQC01;;No;IND;No;1;4.5;0;4;;;;;;1;;;;1;;;;;No;33;3
+547;SSGINDUSTRI91;Task 544;XQC02;;No;IND;No;1;4;0;6;1;1;;;;;1;;;;;;;;No;34;3
+548;SSGINDUSTRI92;Task 545;AVA01;;No;IND;No;1;4;0;6;1;1;;;;;1;;;;;;;;Yes;34;3
+549;SSGINDUSTRI93;Task 546;AVA02;;No;Fyn;No;1;4;0;5;1;;1;;;;;1;;1;;;;;No;34;3
+550;SSGINDUSTRI94;Task 547;ASVS01;;No;Fyn;No;1;4;0;3;1;;1;;;;;1;;;;;;;Yes;34;3
+551;SSGINDUSTRI95;Task 548;ASVS02;;Yes;Fyn;No;1;15;0;1;1;;;1;;;;;;1;;;;;Yes;34;3
+552;SSGINDUSTRI96;Task 549;SSG01;;Yes;Fyn;No;1;15;0;2;1;;;1;;;;1;;;;;;;No;29;3
+553;SSGINDUSTRI97;Task 550;SSG02;;Yes;SpecialTBpport;No;1;4.5;0;4;1;;;;;1;;1;;;;;;;No;30;3
+554;SSGINDUSTRI98;Task 551;PSQL01;;No;SpecialTBpport;No;1;4;0;0.5;;;;;;;;1;;;;;;;Yes;30;3
+555;SSGINDUSTRI99;Task 552;PSQL02;;Yes;Fyn;No;1;4;0;0.5;;;1;;;1;;;;;;;;;No;31;3
+556;SSGINDUSTRI100;Task 553;PSQL03;;No;SpecialTBpport;No;3;3;0;0.5;1;;1;;;;;;;;;;;;Yes;31;3
+557;SSGINDUSTRI101;Task 554;PSQL04;;No;SpecialTBpport;No;3;3;0;0.5;1;;1;;;;;;;;;;;;No;31;3
+558;SSGINDUSTRI102;Task 555;PSQL05;;No;TB;No;3;3;0;6;;;1;;;;;;1;;;;;;No;31;3
+559;SSGINDUSTRI103;Task 556;PPQW02;;No;TB;No;3;3;0;5;;;1;;;;;;;;;;;;No;32;3
+560;SSGINDUSTRI104;Task 557;NPWQ01;;No;Fyn;No;3;3;0;3;1;;1;;1;;;;;1;;;;;No;32;3
+561;SSGINDUSTRI105;Task 558;NPWQ02;;No;SpecialTBpport;No;2;2;0;1;;;;;;;;;;1;;1;;;No;33;3
+562;SSGINDUSTRI106;Task 559;NPWQ03;;Yes;SpecialTBpport;No;1;4.5;0;2;1;;1;;;;1;;;;;1;;;No;34;3
+563;SSGINDUSTRI107;Task 560;nTn01;;Yes;TB;No;1;4;0;4;1;;;1;;;1;;;;;;1;;No;34;3
+564;SSGINDUSTRI108;Task 561;nTn02;;Yes;TB;No;1;4;0;0.5;1;;;;;;;;;;;;1;;No;34;3
+565;SSGINDUSTRI109;Task 562;nTn03;;No;IND;No;1;15;0;0.5;1;;1;;;;;;;;;;;1;No;34;3
+566;SSGINDUSTRI110;Task 563;TnT01;;Yes;IND;No;1;15;0;5;1;1;;1;;;;;;;;;;1;No;34;3
+567;SSGINDUSTRI111;Task 564;TnT02;;No;IND;No;1;4;0;6;1;;;;;;;;1;;;;;;No;32;3
+568;SSGINDUSTRI112;Task 565;TnT03;;No;PRI;No;1.5;15.5;0;2;;;;;;;;;1;;;;;;No;33;3
+569;SSGINDUSTRI113;Task 566;TnT04;;No;PRI;No;1;15;0;6;1;;1;;;;;;;;;;;;No;34;3
+570;SSGINDUSTRI114;Task 567;WyL01;;No;PRI;No;1;4.5;0;6;1;1;1;;;;;;;1;;;;1;No;34;3
+571;SSGINDUSTRI115;Task 568;WyL02;;Yes;IND;No;1;4;0;12;;;1;;;;;;;;;;;1;No;34;3
+572;SSGINDUSTRI116;Task 569;PS01;;Yes;IND;No;1;4;0;4;;;;;;;;;;;1;;;;No;34;3
+573;SSGINDUSTRI117;Task 570;PS02;;Yes;IND;No;1;4;0;3;1;;;1;;;;;;;1;;;;No;34;3
+574;SSGINDUSTRI118;Task 571;PS03;;Yes;IND;No;1;4;0;0.5;;;;1;;;;;;;;1;;1;No;29;3
+575;SSGINDUSTRI119;Task 572;PS04;;Yes;Fyn;No;1;15;0;34;;;;;;;;;;;;1;;;No;30;3
+576;SSGINDUSTRI120;Task 573;PS05;;Yes;Fyn;No;1;15;0;0;;;;;;1;;;;;;;;1;No;30;3
+577;SSGINDUSTRI121;Task 574;PS06;;Yes;Fyn;No;1;4.5;0;4;;;;;;1;;;;;;;1;;No;31;3
+578;SSGINDUSTRI122;Task 575;PS07;;No;Fyn;No;1;4;0;6;;;;;;;1;;;1;;;1;;No;32;3
+579;SSGINDUSTRI123;Task 576;PS08;;No;SpecialTBpport;No;1;4;0;2;;;;;;;1;;;1;;;;;No;33;3
+580;SSGINDUSTRI124;Task 577;PS09;;No;SpecialTBpport;No;3;3;0;6;;;1;;;;;1;;;;;;;No;34;3
+581;SSGINDUSTRI125;Task 578;PS10;;No;Fyn;No;3;3;0;6;;;1;;;;;1;;;;;1;;No;34;3
+582;SSGINDUSTRI126;Task 579;PS11;;No;SpecialTBpport;No;3;3;0;12;1;;;;;;;;;;;;;;No;34;3
+583;SSGINDUSTRI127;Task 580;PS12;;No;SpecialTBpport;No;3;3;0;4;1;;;;;1;;;;;;;1;;No;34;3
+584;SSGINDUSTRI128;Task 581;PS13;;No;TB;No;3;3;0;3;;;;;;1;;;;;1;;;;No;34;3
+585;SSGINDUSTRI129;Task 582;PS14;;Yes;TB;No;1;15;0;0.5;;;;1;;;;;;;1;;;;No;29;3
+586;SSGINDUSTRI130;Task 583;GBPO01;;Yes;Fyn;No;1;4.5;0;34;;;;;;;1;;;;;1;;;No;30;3
+587;SSGINDUSTRI131;Task 584;HRX07;;Yes;SpecialTBpport;No;1;15;0;1;;;;;;;1;;;;;1;;;No;30;3
+588;SSGINDUSTRI132;Task 585;HRX08;;No;SpecialTBpport;No;1.5;6;0;2;;;1;1;;;;;;;;;;;No;31;3
+589;SSGINDUSTRI133;Task 586;QNO01;;Yes;TB;No;1;3;0;4;;;;;;;;;1;;;;;;No;30;3
+590;SSGINDUSTRI134;Task 587;QNO02;;No;TB;No;2.5;6.5;0;0.5;;;;;1;;;;1;;;;;;No;31;3
+591;SSGINDUSTRI135;Task 588;QNO03;;No;IND;No;3.5;5;0;4;;;;;1;;;;;1;;1;;;No;31;3
+592;SSGINDUSTRI136;Task 589;QNO04;;No;IND;No;2;6;0;6;1;;;;;;;;;1;;1;;;No;31;3
+593;SSGINDUSTRI137;Task 590;QNO05;;No;IND;No;1;4;0;5;1;;;;;1;;;;;;;;;No;31;3
+594;SSGINDUSTRI138;Task 591;OO01;;No;PRI;No;1;4;0;3;;1;;;;1;;;;;;;;;No;31;3
+595;SSGINDUSTRI139;Task 592;GBPO01;;No;PRI;No;10;15;0;2;;1;;;;;;;;;;1;;;No;31;3
+596;SSGINDUSTRI140;Task 593;EQCA02, PST03;;Yes;PRI;No;5;15;0;3;;;1;;;;;;;;;;;;No;32;3
+597;SSGINDUSTRI141;Task 594;WQEC01, PS03;;Yes;IND;No;2;4;0;5;;;1;;;;;;;;;1;;;No;32;3
+598;SSGINDUSTRI142;Task 595;WQEC01, PS03;;Yes;IND;No;1;15;0;1;;;;;1;;1;;1;;1;;;;Yes;33;3
+599;SSGINDUSTRI143;Task 596;WQEC01, PS03;;No;IND;No;3;4.5;0;2;1;;;;;;;;1;;1;;;;No;34;3
+600;SSGINDUSTRI144;Task 597;WQEC01, PS03;;Yes;IND;No;1;4;0;4;1;;1;;;;;1;;;;;;;Yes;34;3
+601;SSGINDUSTRI145;Task 598;PST13;;No;Fyn;No;1;4;0;0.5;1;;1;;;;;1;;;;;;;No;34;3
+602;SSGINDUSTRI146;Task 599;EQCA02, PST09;;No;Fyn;No;1;4;0;4;1;;;1;;;;;1;;1;;;;No;34;3
+603;SSGINDUSTRI147;Task 600;OQLE01;;No;Fyn;No;1;4.5;0;6;1;;;1;;;;;1;;;;;;No;34;3
+604;SSGINDUSTRI148;Task 601;OQLE02, WQEC03, WQEC02, WQEC04, WQEC05, PS14, PS11, WyL02, TnT04, PST10, PST11, PST12, WQEC06;;No;Fyn;No;1;15;0;5;1;;;;1;;;;;;1;;;;No;34;3
+605;SSGINDUSTRI149;Task 602;EQCA03;;Yes;SpecialTBpport;No;1;4.5;0;6;;;;;1;;;;1;;;;;;Yes;31;3
+606;SSGINDUSTRI150;Task 603;WWW01;;Yes;SpecialTBpport;No;1;4;0;2;;;;;;;1;;1;;;;;;No;32;3
+607;SSGINDUSTRI151;Task 604;WWW02;;Yes;Fyn;No;1;4;0;6;1;;1;;;;;;;;;;;;Yes;32;3
+608;SSGINDUSTRI152;Task 605;WWW03;;Yes;SpecialTBpport;No;1;4;0;6;;;;;;;;;;;;;;;Yes;33;3
+609;MANFAC01;Task 606;WWW04;;No;SpecialTBpport;No;1;15;0;12;1;;1;;;;;;;;;;;;No;34;3
+610;MANFAC02;Task 607;WWW05;;Yes;TB;No;3;3;0;4;1;;;1;1;;1;;;;;;;;No;34;3
+611;MANFAC03;Task 608;WWW06;;No;TB;No;1;15;0;3;1;;;;1;;;1;;;;;;;Yes;34;3
+612;MANFAC04;Task 609;WWW06;;No;Fyn;No;1;15.5;0;0.5;1;;1;;1;;;1;;;;;;;No;34;3
+613;MANFAC05;Task 610;WWW06;;No;SpecialTBpport;No;1;4.5;0;34;1;;;1;1;;;;1;;1;;;;Yes;34;3
+614;MANFAC06;Task 611;WWW07, WWW08, WWW09;;No;SpecialTBpport;No;2;2;0;0;1;;;;;;;;1;;1;;;;No;34;3
+615;MANFAC07;Task 612;WWW07, WWW08, WWW09;;Yes;TB;No;1;4.5;0;4;1;;1;;;;;;;;;;;;No;29;3
+616;MANFAC08;Task 613;WWW07, WWW08, WWW09;;No;TB;No;1;4;0;6;1;;1;;1;;1;;;;;;;;No;29;3
+617;MANFAC09;Task 614;WWW07, WWW08, WWW09, PS12;;No;IND;No;1;4;0;2;1;;;;;;;;;;;;;;No;29;3
+618;MANFAC10;Task 615;WWW07, WWW08, WWW09, PS13;;No;IND;No;1;15;0;6;1;;;;1;;1;;;;;;;;No;30;3
+619;MANFAC11;Task 616;PS09;;Yes;IND;No;1;15;0;6;;;;;1;;;1;;;;;;;No;30;3
+620;MANFAC12;Task 617;PS10;;Yes;PRI;No;1;4;0;12;;;1;;1;;;;;;;;;;No;31;3
+621;MANFAC13;Task 618;PS11;;Yes;PRI;No;1.5;15.5;0;4;1;;1;;1;;1;;;;;;;;No;31;3
+622;MANFAC14;Task 619;PS12;;No;PRI;No;1;15;0;3;1;;1;;1;;;1;;;;;;;No;31;3
+623;MANFAC15;Task 620;PS13;;Yes;IND;No;1;4.5;0;0.5;;;1;;1;;;;;;;;;;No;31;3
+624;MANFAC16;Task 621;PS14;;No;IND;No;1;4;0;34;;;1;;1;;1;;;;;;;;No;32;3
+625;MANFAC17;Task 622;GBPO01;;No;IND;No;1;4;0;1;1;;1;;1;;1;;;;;;;;No;32;3
+626;MANFAC18;Task 623;HRX07;;No;IND;No;1;4;0;2;;;;;1;;;;;;;;;;No;33;3
+627;MANFAC19;Task 624;HRX08;;No;Fyn;No;1;4;0;4;1;;1;;;;;;1;;;;;;No;34;3
+628;MANFAC20;Task 625;QNO01;;No;Fyn;No;1;15;0;0.5;1;;;1;1;;;;;1;;;;;No;34;3
+629;MANFAC21;Task 626;QNO02;;No;Fyn;No;1;15;0;4;1;;;;1;;;;;1;;;;;No;34;3
+630;MANFACQ01;Task 627;QNO03;;Yes;Fyn;No;1;4.5;0;6;1;;1;;;1;;;;;;;;;Yes;34;3
+631;MANFACQ02;Task 628;QNO04;;Yes;SpecialTBpport;No;1;4;0;5;1;;;1;;1;;;;1;;;;;No;34;3
+632;MANFACQ03;Task 629;QNO05;;Yes;SpecialTBpport;No;1;4;0;3;1;;;;;;;1;;1;;;;;Yes;34;3
+633;MANFACQ04;Task 630;OO01;;No;Fyn;No;1;4;0;2;1;;1;;;;;;;;;;;;No;29;3
+634;MANFACQ05;Task 631;GBPO01;;Yes;SpecialTBpport;No;1;4;0;3;1;;1;;;;;;;;;;;;No;29;3
+635;MANFACQ06;Task 632;EQCA02, PST03;;No;SpecialTBpport;No;1;4;0;5;1;;;;;;;;;;;;;;No;29;3
+636;MANFACQ07;Task 633;WQEC01, PS03;;No;TB;No;1;4;0;1;1;;;;1;1;;1;;;;;;;No;30;3
+637;MANFACQ08;Task 634;WQEC01, PS03;;No;TB;No;3;4;0;2;;;;;;1;;;1;;;;;;Yes;30;3
+638;MANFACQ09;Task 635;WQEC01, PS03;;No;Fyn;No;1;4;0;4;;;;;;;1;;;;;;;;No;31;3
+639;MANFACQ10;Task 636;WQEC01, PS03;;Yes;SpecialTBpport;No;1;4;0;0.5;1;;1;;;;;1;1;1;;;;;Yes;31;3
+640;MANFACQ11;Task 637;PST13;;Yes;SpecialTBpport;No;9;15;0;4;1;;1;;;;;1;1;1;;;;;Yes;31;3
+641;MANFACQ12;Task 638;EQCA02, PST09;;Yes;TB;No;4;15;0;6;1;;;1;;;;;;;;;;;No;29;3
+642;MANFACQ13;Task 639;;;No;TB;No;1;4.5;0;5;1;;;1;;;;1;1;;;;;;No;30;3
+643;MANFACQ14;Task 640;PS01, PS02, PST04, PST05, PST06, PST07, EQCA02;;Yes;IND;No;1;4;0;6;;;;;;1;;1;1;;;;;;Yes;30;3
+644;MANFACQ15;Task 641;PS03;;No;IND;No;1;4;0;2;;;;;;;;;;;;;;;No;31;3
+645;MANFACQ16;Task 642;WQEC01, PS03, EQCA02;;No;IND;No;1;4;0;6;1;;;;;;;;;;;;;;Yes;31;3
+646;MANFACQ17;Task 643;PS05, GBPO02, PST08, WyL01;;No;PRI;No;1;4;0;6;1;;;;;;;;;;;;;;No;31;3
+647;MANFACQ18;Task 644;PS06, PST14, PS04;;No;PRI;No;5;4;0;12;;;1;1;;1;;;;;;;;;No;31;3
+648;MANFACQ19;Task 645;PS07;;Yes;PRI;No;1;4;0;4;;;;1;;;1;;;;;;;;No;32;3
+649;MANFACQ20;Task 646;PS07;;No;IND;No;1;4;0;3;1;;;1;;;1;;;;;;;;No;32;3
+650;MANFACQ21;Task 647;PS07;;No;IND;No;2;2;0;0.5;;;1;1;;;;1;1;;;;;;No;33;3
+651;MANFACQ22;Task 648;TnT03, WQEC01, GBPO02, PS08, PS09, PS10, nTn03;;No;IND;No;2;4.5;0;34;1;;;;;;;1;1;;;;;;No;34;3
+652;MANFACQ23;Task 649;PS07;;No;IND;No;1;4;0;0;1;;;;;;;;;;;;;;No;34;3
+653;MANFACQ24;Task 650;PS07;;Yes;Fyn;No;1;4;0;4;1;;;1;;1;;;;;;;;;No;34;3
+654;MANFACQ25;Task 651;PS11;;Yes;Fyn;No;1;15;0;6;1;;;;;;;;;;;;;;No;34;3
+655;MANFACQ26;Task 652;PS03, EQCA02, WQEC01;;Yes;Fyn;No;1;15;0;2;1;;;1;;1;;;;;;;;;No;34;3
+656;MANFACQ27;Task 653;GBPO01;;No;Fyn;No;1;4;0;6;1;;;1;;;1;;;;;;;;No;29;3
+657;MANFACQ28;Task 654;EQCA02, PST03;;Yes;SpecialTBpport;No;12;15.5;0;6;1;;;1;;;;;;;;;;;No;30;3
+658;MANFACQ29;Task 655;WQEC01, PS03;;No;SpecialTBpport;No;1;15;0;12;;;;1;;1;;;;;;;;;No;30;3
+659;MANFACQ30;Task 656;WQEC01, PS03;;No;Fyn;No;1;4.5;0;4;;;;1;;;1;;;;;;;;No;31;3
+660;MANFACQ31;Task 657;WQEC01, PS03;;No;SpecialTBpport;No;1;4;0;3;1;;;1;;;;;;;;;;;No;31;3
+661;MANFACQ32;Task 658;WQEC01, PS03;;No;SpecialTBpport;No;1;4;0;0.5;1;;;1;;1;;;;;;;;;No;31;3
+662;MANFACQ33;Task 659;PST13;;No;TB;No;1;4;0;34;;;;1;;1;;;;;;;;;Yes;31;3
+663;MANFACQ34;Task 660;EQCA02, PST09;;No;TB;No;1;4;0;1;;;1;;;;;;;;;;;;No;32;3
+664;MANFACQ35;Task 661;OQLE01;;No;Fyn;No;1;15;0;2;1;;1;;;;;;;;;;;;Yes;32;3
+665;PCPAQ03;Final acceptance;PCPAQ02;;No;0;Yes;5;13;0;4;1;;;;;;;;1;;;;;;No;38;3
+666;EQCA04;Project finished;PCPAQ03;;No;0;Yes;1;4;0;0.5;;;;;;;;;;;;;;;No;39;2
