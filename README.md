@@ -1,6 +1,6 @@
 # Task-Scheduling-Configurator
 
-
+Demo.mp4 is a demo video of the application 
 This is run on python 3.8
 
 To get started install
